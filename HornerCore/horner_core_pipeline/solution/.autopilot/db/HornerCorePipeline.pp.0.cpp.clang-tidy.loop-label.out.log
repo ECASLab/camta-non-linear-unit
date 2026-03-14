@@ -1,25 +1,25 @@
-C:\Users\carlo\OneDrive\Documents\Maestria\DAFPGA\Proyecto\HLS_Prototype\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:1325:7: warning: Added loop label VITIS_LOOP_1207_1:   [xilinx-label-all-loops]
+C:\Users\josef\OneDrive\Documentos\GitHub\proj_final_FPGA_CAMTA\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:1325:7: warning: Added loop label VITIS_LOOP_1207_1:   [xilinx-label-all-loops]
       for (i = 0; i < __N - 1; ++i) {
       ^~~
       VITIS_LOOP_1207_1: 
-C:\Users\carlo\OneDrive\Documents\Maestria\DAFPGA\Proyecto\HLS_Prototype\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:1325:7: note: FIX-IT applied suggested code changes
-C:\Users\carlo\OneDrive\Documents\Maestria\DAFPGA\Proyecto\HLS_Prototype\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:2299:5: warning: Added loop label VITIS_LOOP_676_1:   [xilinx-label-all-loops]
+C:\Users\josef\OneDrive\Documentos\GitHub\proj_final_FPGA_CAMTA\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:1325:7: note: FIX-IT applied suggested code changes
+C:\Users\josef\OneDrive\Documentos\GitHub\proj_final_FPGA_CAMTA\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:2299:5: warning: Added loop label VITIS_LOOP_676_1:   [xilinx-label-all-loops]
     for (unsigned i = low; i != high; ++i) {
     ^~~
     VITIS_LOOP_676_1: 
-C:\Users\carlo\OneDrive\Documents\Maestria\DAFPGA\Proyecto\HLS_Prototype\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:2299:5: note: FIX-IT applied suggested code changes
-C:\Users\carlo\OneDrive\Documents\Maestria\DAFPGA\Proyecto\HLS_Prototype\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:2313:5: warning: Added loop label VITIS_LOOP_690_1:   [xilinx-label-all-loops]
+C:\Users\josef\OneDrive\Documentos\GitHub\proj_final_FPGA_CAMTA\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:2299:5: note: FIX-IT applied suggested code changes
+C:\Users\josef\OneDrive\Documentos\GitHub\proj_final_FPGA_CAMTA\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:2313:5: warning: Added loop label VITIS_LOOP_690_1:   [xilinx-label-all-loops]
     for (unsigned i = low; i != high; ++i) {
     ^~~
     VITIS_LOOP_690_1: 
-C:\Users\carlo\OneDrive\Documents\Maestria\DAFPGA\Proyecto\HLS_Prototype\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:2313:5: note: FIX-IT applied suggested code changes
-C:\Users\carlo\OneDrive\Documents\Maestria\DAFPGA\Proyecto\HLS_Prototype\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:2327:5: warning: Added loop label VITIS_LOOP_704_1:   [xilinx-label-all-loops]
+C:\Users\josef\OneDrive\Documentos\GitHub\proj_final_FPGA_CAMTA\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:2313:5: note: FIX-IT applied suggested code changes
+C:\Users\josef\OneDrive\Documentos\GitHub\proj_final_FPGA_CAMTA\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:2327:5: warning: Added loop label VITIS_LOOP_704_1:   [xilinx-label-all-loops]
     for (unsigned i = low; i != high; ++i) {
     ^~~
     VITIS_LOOP_704_1: 
-C:\Users\carlo\OneDrive\Documents\Maestria\DAFPGA\Proyecto\HLS_Prototype\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:2327:5: note: FIX-IT applied suggested code changes
-C:\Users\carlo\OneDrive\Documents\Maestria\DAFPGA\Proyecto\HLS_Prototype\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:3944:7: warning: Added loop label VITIS_LOOP_1247_1:   [xilinx-label-all-loops]
+C:\Users\josef\OneDrive\Documentos\GitHub\proj_final_FPGA_CAMTA\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:2327:5: note: FIX-IT applied suggested code changes
+C:\Users\josef\OneDrive\Documentos\GitHub\proj_final_FPGA_CAMTA\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:3944:7: warning: Added loop label VITIS_LOOP_1247_1:   [xilinx-label-all-loops]
       for (i = 0; i < __N - 1; ++i) {
       ^~~
       VITIS_LOOP_1247_1: 
-C:\Users\carlo\OneDrive\Documents\Maestria\DAFPGA\Proyecto\HLS_Prototype\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:3944:7: note: FIX-IT applied suggested code changes
+C:\Users\josef\OneDrive\Documentos\GitHub\proj_final_FPGA_CAMTA\HornerCore\horner_core_pipeline\solution\.autopilot\db\HornerCorePipeline.pp.0.cpp:3944:7: note: FIX-IT applied suggested code changes

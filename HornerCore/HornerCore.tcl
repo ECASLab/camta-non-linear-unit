@@ -23,12 +23,12 @@ if { [info exists ::env(CLOCK_PERIOD) ] } {
 # Crear proyecto
 # ==============================
 
-open_project horner_core_pipeline -reset
-set_top horner_core_pipelines
+open_project horner_core -reset
+set_top horner_core
 
 # Archivos fuente
-add_files "./HornerCorePipeline.cpp"
-add_files -tb "./HornerCorePipeline_tb.cc"
+add_files "./HornerCore.cpp"
+add_files -tb "./HornerCore_tb.cc"
 
 # ==============================
 # Crear solución
@@ -46,7 +46,7 @@ config_interface -m_axi_conservative_mode=1
 config_interface -m_axi_auto_max_ports=0
 
 # Exportar como kernel XO
-config_export -format xo -ipname softmax_opt
+config_export -format xo -ipname horner_core
 
 # ==============================
 # Simulación y síntesis

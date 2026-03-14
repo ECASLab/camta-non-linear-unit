@@ -6,21 +6,21 @@
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
-source C:/Xilinx/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running 'C:/Xilinx/Vitis_HLS/2023.2/bin/unwrapped/win64.o/vitis_hls.exe'
-INFO: [HLS 200-10] For user 'carlo' on host 'emilio' (Windows NT_amd64 version 6.2) on Tue Mar 10 20:28:14 -0600 2026
-INFO: [HLS 200-10] In directory 'C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore'
+source S:/Xilinx/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running 'S:/Xilinx/Vitis_HLS/2023.2/bin/unwrapped/win64.o/vitis_hls.exe'
+INFO: [HLS 200-10] For user 'josef' on host 'fc-laptop' (Windows NT_amd64 version 6.2) on Sat Mar 14 16:02:43 -0600 2026
+INFO: [HLS 200-10] In directory 'C:/Users/josef/OneDrive/Documentos/GitHub/proj_final_FPGA_CAMTA/HornerCore'
 INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
 Sourcing Tcl script '.\HornerCore.tcl'
 INFO: [HLS 200-1510] Running: open_project horner_core_pipeline -reset 
-INFO: [HLS 200-10] Opening and resetting project 'C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline'.
-INFO: [HLS 200-1510] Running: set_top horner_core_pipeline 
+INFO: [HLS 200-10] Opening and resetting project 'C:/Users/josef/OneDrive/Documentos/GitHub/proj_final_FPGA_CAMTA/HornerCore/horner_core_pipeline'.
+INFO: [HLS 200-1510] Running: set_top horner_core_pipelines 
 INFO: [HLS 200-1510] Running: add_files ./HornerCorePipeline.cpp 
 INFO: [HLS 200-10] Adding design file './HornerCorePipeline.cpp' to the project
 INFO: [HLS 200-1510] Running: add_files -tb ./HornerCorePipeline_tb.cc 
 INFO: [HLS 200-10] Adding test bench file './HornerCorePipeline_tb.cc' to the project
 INFO: [HLS 200-1510] Running: open_solution solution -flow_target vitis 
-INFO: [HLS 200-10] Creating and opening solution 'C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution'.
+INFO: [HLS 200-10] Creating and opening solution 'C:/Users/josef/OneDrive/Documentos/GitHub/proj_final_FPGA_CAMTA/HornerCore/horner_core_pipeline/solution'.
 INFO: [HLS 200-1505] Using flow_target 'vitis'
 Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
 INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
@@ -43,123 +43,65 @@ INFO: [HLS 200-2036] Building debug C Simulation binaries
    Compiling ../../../../HornerCorePipeline_tb.cc in debug mode
    Compiling ../../../../HornerCorePipeline.cpp in debug mode
    Generating csim.exe
-In file included from C:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:150:0,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
+In file included from S:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:150:0,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
                  from ../../../../HornerCorePipeline_tb.cc:3:
-C:/Xilinx/Vitis_HLS/2023.2/include/gmp.h:58:0: warning: "__GMP_LIBGMP_DLL" redefined
+S:/Xilinx/Vitis_HLS/2023.2/include/gmp.h:58:0: warning: "__GMP_LIBGMP_DLL" redefined
  #define __GMP_LIBGMP_DLL  0
  
-In file included from C:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140:0,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
+In file included from S:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140:0,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
                  from ../../../../HornerCorePipeline_tb.cc:3:
-C:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:142:0: note: this is the location of the previous definition
+S:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:142:0: note: this is the location of the previous definition
  #define __GMP_LIBGMP_DLL 1
  
-In file included from C:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:150:0,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
+In file included from S:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:150:0,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
                  from ../../../../HornerCorePipeline.cpp:1:
-C:/Xilinx/Vitis_HLS/2023.2/include/gmp.h:58:0: warning: "__GMP_LIBGMP_DLL" redefined
+S:/Xilinx/Vitis_HLS/2023.2/include/gmp.h:58:0: warning: "__GMP_LIBGMP_DLL" redefined
  #define __GMP_LIBGMP_DLL  0
  
-In file included from C:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140:0,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
-                 from C:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
+In file included from S:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140:0,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
+                 from S:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
                  from ../../../../HornerCorePipeline.cpp:1:
-C:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:142:0: note: this is the location of the previous definition
+S:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:142:0: note: this is the location of the previous definition
  #define __GMP_LIBGMP_DLL 1
  
 MSE = 3.27301e-005
 INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
-INFO: [HLS 200-111] Finished Command csim_design CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 3.825 seconds; current allocated memory: 1.027 MB.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 3.766 seconds; current allocated memory: 0.844 MB.
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.147 seconds; current allocated memory: 165.141 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.087 seconds; current allocated memory: 183.344 MB.
 INFO: [HLS 200-10] Analyzing design file './HornerCorePipeline.cpp' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 4.07 seconds; current allocated memory: 168.023 MB.
-INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
-INFO: [HLS 200-1995] There were 1,193 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 124 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 32 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 45 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 45 instructions in the design after the 'Unroll/Inline (step 4)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 45 instructions in the design after the 'Array/Struct (step 1)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 45 instructions in the design after the 'Array/Struct (step 2)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 45 instructions in the design after the 'Array/Struct (step 3)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 45 instructions in the design after the 'Array/Struct (step 4)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 45 instructions in the design after the 'Array/Struct (step 5)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 45 instructions in the design after the 'Performance (step 1)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 45 instructions in the design after the 'Performance (step 2)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 45 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 45 instructions in the design after the 'Performance (step 4)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 45 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 46 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/horner_core_pipeline/solution/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 8.326 seconds; current allocated memory: 169.832 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.007 seconds; current allocated memory: 169.832 MB.
-INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.119 seconds; current allocated memory: 173.777 MB.
-INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.078 seconds; current allocated memory: 175.078 MB.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.088 seconds; current allocated memory: 195.520 MB.
-INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.08 seconds; current allocated memory: 195.539 MB.
-INFO: [HLS 200-10] Starting hardware synthesis ...
-INFO: [HLS 200-10] Synthesizing 'horner_core_pipeline' ...
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'horner_core_pipeline' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [HLS 200-486] Changing DSP latency (root=add_ln19) to 3 in order to utilize available DSP registers.
-INFO: [HLS 200-486] Changing DSP latency (root=add_ln18) to 3 in order to utilize available DSP registers.
-INFO: [HLS 200-486] Changing DSP latency (root=add_ln17) to 3 in order to utilize available DSP registers.
-INFO: [SCHED 204-61] Pipelining function 'horner_core_pipeline'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 10, function 'horner_core_pipeline'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.544 seconds; current allocated memory: 195.539 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.371 seconds; current allocated memory: 195.539 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'horner_core_pipeline' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
-INFO: [RTGEN 206-500] Setting interface mode on port 'horner_core_pipeline/x' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'horner_core_pipeline/a3' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'horner_core_pipeline/a2' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'horner_core_pipeline/a1' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'horner_core_pipeline/a0' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on function 'horner_core_pipeline' to 's_axilite & ap_ctrl_chain'.
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'horner_core_pipeline' pipeline 'horner_core_pipeline' pipeline type 'function pipeline'
-INFO: [RTGEN 206-100] Bundling port 'return', 'a3', 'a2', 'a1' and 'a0' to AXI-Lite port control.
-INFO: [RTGEN 206-100] Generating core module 'mac_muladd_16s_16s_26ns_26_4_1': 3 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'horner_core_pipeline'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.418 seconds; current allocated memory: 196.836 MB.
-WARNING: [HLS 200-601] Overriding requested -ipname of 'softmax_opt' with 'horner_core_pipeline'
-INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.849 seconds; current allocated memory: 201.648 MB.
-INFO: [HLS 200-111] Finished Updating report files: CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 1.13 seconds; current allocated memory: 205.586 MB.
-INFO: [VHDL 208-304] Generating VHDL RTL for horner_core_pipeline.
-INFO: [VLOG 209-307] Generating Verilog RTL for horner_core_pipeline.
-INFO: [HLS 200-789] **** Estimated Fmax: 501.00 MHz
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 16.435 seconds; current allocated memory: 41.176 MB.
-INFO: [HLS 200-1510] Running: close_project 
-HLS completed successfully
-INFO: [HLS 200-112] Total CPU user time: 3 seconds. Total CPU system time: 2 seconds. Total elapsed time: 22.711 seconds; peak allocated memory: 205.949 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Tue Mar 10 20:28:36 2026...
+WARNING: [HLS 200-1986] Could not apply TOP directive, invalid function, label, or variable (C:/Users/josef/OneDrive/Documentos/GitHub/proj_final_FPGA_CAMTA/HornerCore/HornerCore.tcl:57)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 3.352 seconds; current allocated memory: 186.125 MB.
+ERROR: [HLS 214-157] Top function not found: there is no function named 'horner_core_pipelines'
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 5.698 seconds; current allocated memory: 3.293 MB.
+Error in opt
+    while executing
+"source {.\HornerCore.tcl}"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 2 seconds. Total CPU system time: 1 seconds. Total elapsed time: 12.794 seconds; peak allocated memory: 186.359 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sat Mar 14 16:02:55 2026...

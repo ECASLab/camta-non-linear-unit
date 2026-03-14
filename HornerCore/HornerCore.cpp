@@ -1,6 +1,7 @@
 #include <ap_fixed.h>
 
 typedef ap_fixed<16,6> data_t;
+typedef ap_fixed<32,12> acc_t;
 
 ap_fixed<16,6> horner_core(
     ap_fixed<16,6> x,
@@ -9,13 +10,16 @@ ap_fixed<16,6> horner_core(
     ap_fixed<16,6> a1,
     ap_fixed<16,6> a0)
 {
+#pragma HLS INLINE off
 #pragma HLS PIPELINE off
+#pragma HLS ALLOCATION instances=mul limit=1 operation
+#pragma HLS ALLOCATION instances=add limit=1 operation
 
-    ap_fixed<16,6> acc;
+    acc_t acc = a3;
 
-    acc = a3 * x + a2;
+    acc = acc * x + a2;
     acc = acc * x + a1;
     acc = acc * x + a0;
 
-    return acc;
+    return (data_t)acc;
 }

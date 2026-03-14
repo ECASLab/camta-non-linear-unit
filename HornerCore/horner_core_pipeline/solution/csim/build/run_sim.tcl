@@ -5,11 +5,11 @@
 # Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 # 
 # ==============================================================
-set ::env(PATH) "$::env(PATH);C:/Xilinx/Vitis_HLS/2023.2/win64/tools/fpo_v7_1"
-set ::env(PATH) "$::env(PATH);C:/Xilinx/Vitis_HLS/2023.2/win64/tools/fft_v9_1"
-set ::env(PATH) "$::env(PATH);C:/Xilinx/Vitis_HLS/2023.2/win64/tools/fir_v7_0"
-set ::env(PATH) "$::env(PATH);C:/Xilinx/Vitis_HLS/2023.2/win64/tools/dds_v6_0"
-set ::env(PATH) "$::env(PATH);C:/Xilinx/Vitis_HLS/2023.2/win64/csim"
+set ::env(PATH) "$::env(PATH);S:/Xilinx/Vitis_HLS/2023.2/win64/tools/fpo_v7_1"
+set ::env(PATH) "$::env(PATH);S:/Xilinx/Vitis_HLS/2023.2/win64/tools/fft_v9_1"
+set ::env(PATH) "$::env(PATH);S:/Xilinx/Vitis_HLS/2023.2/win64/tools/fir_v7_0"
+set ::env(PATH) "$::env(PATH);S:/Xilinx/Vitis_HLS/2023.2/win64/tools/dds_v6_0"
+set ::env(PATH) "$::env(PATH);S:/Xilinx/Vitis_HLS/2023.2/win64/csim"
 ### C sim ###
 if {![file exists csim.exe]} {
   puts "@E C-simulation is not set up properly. Please re-run csim."

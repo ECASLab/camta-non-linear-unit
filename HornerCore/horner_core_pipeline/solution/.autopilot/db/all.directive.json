@@ -1,7 +1,7 @@
 [
   {
     "functionLabel": "",
-    "functionName": "horner_core_pipeline",
+    "functionName": "horner_core_pipelines",
     "id": 0,
     "ifcond": "",
     "insert_position": "",
@@ -11,13 +11,13 @@
       "option": [
         {
           "name": "name",
-          "value": "horner_core_pipeline"
+          "value": "horner_core_pipelines"
         }
       ]
     },
     "slx": false,
-    "sourceFile": "C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/HornerCore.tcl",
+    "sourceFile": "C:/Users/josef/OneDrive/Documentos/GitHub/proj_final_FPGA_CAMTA/HornerCore/HornerCore.tcl",
     "sourceLine": 57,
-    "success": true
+    "success": false
   }
 ]
