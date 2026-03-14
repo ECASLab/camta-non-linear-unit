@@ -1,0 +1,23 @@
+[
+  {
+    "functionLabel": "",
+    "functionName": "horner_core_pipeline",
+    "id": 0,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "horner_core_pipeline"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/HornerCore.tcl",
+    "sourceLine": 57,
+    "success": true
+  }
+]

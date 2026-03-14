@@ -1,0 +1,11 @@
+{
+  "0": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "HornerCorePipeline.cpp",
+    "fileloc": 5,
+    "instructions": 46,
+    "name": "horner_core_pipeline",
+    "total_instructions": 46
+  }
+}
