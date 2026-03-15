@@ -1,0 +1,20 @@
+{
+    "1": {
+        "name": "horner_core",
+        "file": "src\/horner_core.cpp",
+        "fileloc": "11",
+        "instructions": "36",
+        "total_instructions": "36",
+        "calls": "",
+        "basicblocks": "1"
+    },
+    "0": {
+        "name": "camta",
+        "file": "camta.cpp",
+        "fileloc": "4",
+        "instructions": "60",
+        "total_instructions": "96",
+        "calls": "1",
+        "basicblocks": "1"
+    }
+}

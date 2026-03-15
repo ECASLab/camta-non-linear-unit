@@ -9,37 +9,40 @@
         <TopModelName>horner_core</TopModelName>
         <TargetClockPeriod>4.00</TargetClockPeriod>
         <ClockUncertainty>1.08</ClockUncertainty>
+        <TargetInitiationInterval>1</TargetInitiationInterval>
         <FlowTarget>vitis</FlowTarget>
     </UserAssignments>
     <PerformanceEstimates>
-        <PipelineType>no</PipelineType>
+        <PipelineType>yes</PipelineType>
         <SummaryOfTimingAnalysis>
             <unit>ns</unit>
-            <EstimatedClockPeriod>1.996</EstimatedClockPeriod>
+            <EstimatedClockPeriod>2.365</EstimatedClockPeriod>
         </SummaryOfTimingAnalysis>
         <SummaryOfOverallLatency>
             <unit>clock cycles</unit>
-            <Best-caseLatency>9</Best-caseLatency>
-            <Average-caseLatency>9</Average-caseLatency>
-            <Worst-caseLatency>9</Worst-caseLatency>
-            <Best-caseRealTimeLatency>36.000 ns</Best-caseRealTimeLatency>
-            <Average-caseRealTimeLatency>36.000 ns</Average-caseRealTimeLatency>
-            <Worst-caseRealTimeLatency>36.000 ns</Worst-caseRealTimeLatency>
-            <Interval-min>10</Interval-min>
-            <Interval-max>10</Interval-max>
+            <Best-caseLatency>11</Best-caseLatency>
+            <Average-caseLatency>11</Average-caseLatency>
+            <Worst-caseLatency>11</Worst-caseLatency>
+            <Best-caseRealTimeLatency>44.000 ns</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>44.000 ns</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>44.000 ns</Worst-caseRealTimeLatency>
+            <PipelineInitiationInterval>3</PipelineInitiationInterval>
+            <PipelineDepth>12</PipelineDepth>
+            <Interval-min>3</Interval-min>
+            <Interval-max>3</Interval-max>
         </SummaryOfOverallLatency>
         <SummaryOfViolations>
             <IssueType>-</IssueType>
             <ViolationType>-</ViolationType>
-            <SourceLocation>./HornerCore.cpp:12</SourceLocation>
+            <SourceLocation>./HornerCore.cpp:11</SourceLocation>
         </SummaryOfViolations>
     </PerformanceEstimates>
     <AreaEstimates>
         <Resources>
             <BRAM_18K>0</BRAM_18K>
-            <DSP>3</DSP>
-            <FF>218</FF>
-            <LUT>311</LUT>
+            <DSP>2</DSP>
+            <FF>768</FF>
+            <LUT>577</LUT>
             <URAM>0</URAM>
         </Resources>
         <AvailableResources>
@@ -275,7 +278,7 @@
     <RTLDesignHierarchy>
         <TopModule MAX_DEPTH="2">
             <ModuleName>horner_core</ModuleName>
-            <BindInstances>mac_muladd_16s_16s_26ns_26_4_1_U1 mac_muladd_16s_16s_26ns_26_4_1_U1 mac_muladd_16s_16s_26ns_26_4_1_U2 mac_muladd_16s_16s_26ns_26_4_1_U2 mac_muladd_16s_16s_26ns_26_4_1_U3 mac_muladd_16s_16s_26ns_26_4_1_U3 control_s_axi_U</BindInstances>
+            <BindInstances>mul_32s_16s_42_2_1_U1 add_ln17_fu_156_p2 mul_32s_16s_42_2_1_U1 add_ln18_fu_187_p2 mul_32s_16s_42_2_1_U1 add_ln19_fu_218_p2 control_s_axi_U</BindInstances>
         </TopModule>
     </RTLDesignHierarchy>
     <ModuleInformation>
@@ -285,22 +288,24 @@
                 <SummaryOfTimingAnalysis>
                     <TargetClockPeriod>4.00</TargetClockPeriod>
                     <ClockUncertainty>1.08</ClockUncertainty>
-                    <EstimatedClockPeriod>1.996</EstimatedClockPeriod>
+                    <TargetInitiationInterval>1</TargetInitiationInterval>
+                    <EstimatedClockPeriod>2.365</EstimatedClockPeriod>
                 </SummaryOfTimingAnalysis>
                 <SummaryOfOverallLatency>
-                    <Best-caseLatency>9</Best-caseLatency>
-                    <Average-caseLatency>9</Average-caseLatency>
-                    <Worst-caseLatency>9</Worst-caseLatency>
-                    <Best-caseRealTimeLatency>36.000 ns</Best-caseRealTimeLatency>
-                    <Average-caseRealTimeLatency>36.000 ns</Average-caseRealTimeLatency>
-                    <Worst-caseRealTimeLatency>36.000 ns</Worst-caseRealTimeLatency>
-                    <PipelineInitiationInterval>10</PipelineInitiationInterval>
-                    <PipelineType>no</PipelineType>
+                    <Best-caseLatency>11</Best-caseLatency>
+                    <Average-caseLatency>11</Average-caseLatency>
+                    <Worst-caseLatency>11</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>44.000 ns</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>44.000 ns</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>44.000 ns</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>3</PipelineInitiationInterval>
+                    <PipelineDepth>12</PipelineDepth>
+                    <PipelineType>yes</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfViolations>
                     <IssueType>-</IssueType>
                     <ViolationType>-</ViolationType>
-                    <SourceLocation>./HornerCore.cpp:12</SourceLocation>
+                    <SourceLocation>./HornerCore.cpp:11</SourceLocation>
                 </SummaryOfViolations>
             </PerformanceEstimates>
             <AreaEstimates>
@@ -308,13 +313,13 @@
                     <BRAM_18K>0</BRAM_18K>
                     <AVAIL_BRAM>288</AVAIL_BRAM>
                     <UTIL_BRAM>0</UTIL_BRAM>
-                    <DSP>3</DSP>
+                    <DSP>2</DSP>
                     <AVAIL_DSP>1248</AVAIL_DSP>
                     <UTIL_DSP>~0</UTIL_DSP>
-                    <FF>218</FF>
+                    <FF>768</FF>
                     <AVAIL_FF>234240</AVAIL_FF>
                     <UTIL_FF>~0</UTIL_FF>
-                    <LUT>311</LUT>
+                    <LUT>577</LUT>
                     <AVAIL_LUT>117120</AVAIL_LUT>
                     <UTIL_LUT>~0</UTIL_LUT>
                     <URAM>0</URAM>
@@ -323,19 +328,19 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_26ns_26_4_1_U1" SOURCE="./HornerCore.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln16"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_26ns_26_4_1_U1" SOURCE="./HornerCore.cpp:16" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln16"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_26ns_26_4_1_U2" SOURCE="./HornerCore.cpp:17" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln17"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_26ns_26_4_1_U2" SOURCE="./HornerCore.cpp:17" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln17"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mac_muladd_16s_16s_26ns_26_4_1_U3" SOURCE="./HornerCore.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln18"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="1" ID="" IMPL="dsp_slice" LATENCY="3" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="mac_muladd_16s_16s_26ns_26_4_1_U3" SOURCE="./HornerCore.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_16s_42_2_1_U1" SOURCE="./HornerCore.cpp:17" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln17_fu_156_p2" SOURCE="./HornerCore.cpp:17" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln17"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_16s_42_2_1_U1" SOURCE="./HornerCore.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln18_fu_187_p2" SOURCE="./HornerCore.cpp:18" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln18"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_32s_16s_42_2_1_U1" SOURCE="./HornerCore.cpp:19" STORAGESUBTYPE="" URAM="0" VARIABLE="mul_ln19"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="" OPTYPE="add" PRAGMA="" RTLNAME="add_ln19_fu_218_p2" SOURCE="./HornerCore.cpp:19" STORAGESUBTYPE="" URAM="0" VARIABLE="add_ln19"/>
                 <BindNode BINDTYPE="adapter" BRAM="0" BUNDLEDNAME="control" DISPNAME="bind_adapter " DSP="0" ID="" IMPL="" LATENCY="" LOOP="" OPTYPE="" PRAGMA="" RTLNAME="control_s_axi_U" SOURCE="" STORAGESIZE="" STORAGESUBTYPE="s_axilite" STORAGEUSAGE="interface" URAM="0" VARIABLE=""/>
             </BindNodes>
         </Module>
     </ModuleInformation>
     <FIFOInformation/>
     <UserConfigCommands>
-        <config_export format="xo" ipname="softmax_opt"/>
+        <config_export format="xo" ipname="horner_core"/>
     </UserConfigCommands>
     <Args>
         <Arg ArgName="x" index="0" direction="in" srcType="ap_fixed&lt;16, 6, AP_TRN, AP_WRAP, 0&gt;" srcSize="16">
@@ -565,7 +570,10 @@
     </ReportSWInterface>
     <ResolutionUrl key="ZZZ">docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&amp;url=ug1448-hls-guidance&amp;resourceid=ZZZ.html</ResolutionUrl>
     <PragmaReport>
-        <Pragma type="pipeline" location="./HornerCore.cpp:12" status="valid" parentFunction="horner_core" variable="" isDirective="0" options="off"/>
+        <Pragma type="pipeline" location="./HornerCore.cpp:11" status="valid" parentFunction="horner_core" variable="" isDirective="0" options="II=1"/>
+        <Pragma type="allocation" location="./HornerCore.cpp:12" status="valid" parentFunction="horner_core" variable="" isDirective="0" options="operation instances=mul limit=1"/>
+        <Pragma type="unroll" location="./HornerCore.cpp:15" status="valid" parentFunction="horner_core" variable="" isDirective="0" options="off"/>
+        <Pragma type="pipeline" location="./HornerCore.cpp:16" status="valid" parentFunction="horner_core" variable="" isDirective="0" options=""/>
     </PragmaReport>
 </profile>
 

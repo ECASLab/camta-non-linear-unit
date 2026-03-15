@@ -5715,27 +5715,28 @@ inline __attribute__((nodebug)) bool operator!=(
 }
 # 366 "C:/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot\\ap_fixed.h" 2
 # 2 "./HornerCore.cpp" 2
-
 typedef ap_fixed<16,6> data_t;
-
-__attribute__((sdx_kernel("horner_core", 0))) ap_fixed<16,6> horner_core(
-    ap_fixed<16,6> x,
-    ap_fixed<16,6> a3,
-    ap_fixed<16,6> a2,
-    ap_fixed<16,6> a1,
-    ap_fixed<16,6> a0)
+typedef ap_fixed<32,12> acc_t;
+__attribute__((sdx_kernel("horner_core", 0))) data_t horner_core(
+    data_t x,
+    data_t a3,
+    data_t a2,
+    data_t a1,
+    data_t a0)
 {
-#line 57 "C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/HLS_Prototype/HornerCore/HornerCore.tcl"
+#line 57 "C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/HornerCore/HornerCore.tcl"
 #pragma HLSDIRECTIVE TOP name=horner_core
-# 11 "./HornerCore.cpp"
+# 10 "./HornerCore.cpp"
 
-#pragma HLS PIPELINE off
-
- ap_fixed<16,6> acc;
-
-    acc = a3 * x + a2;
-    acc = acc * x + a1;
-    acc = acc * x + a0;
-
-    return acc;
+#pragma HLS PIPELINE II=1
+#pragma HLS ALLOCATION operation instances=mul limit=1
+ acc_t acc = a3;
+    VITIS_LOOP_14_1: for(int i=0;i<3;i++){
+#pragma HLS UNROLL off
+#pragma HLS PIPELINE
+ if(i==0) acc = acc * x + a2;
+        if(i==1) acc = acc * x + a1;
+        if(i==2) acc = acc * x + a0;
+    }
+    return (data_t)acc;
 }

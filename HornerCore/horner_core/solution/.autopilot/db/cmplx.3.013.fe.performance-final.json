@@ -3,9 +3,9 @@
     "basicblocks": 1,
     "calls": "",
     "file": "HornerCore.cpp",
-    "fileloc": 5,
-    "instructions": 45,
+    "fileloc": 4,
+    "instructions": 50,
     "name": "horner_core",
-    "total_instructions": 45
+    "total_instructions": 50
   }
 }

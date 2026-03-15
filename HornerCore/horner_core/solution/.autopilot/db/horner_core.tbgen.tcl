@@ -2,8 +2,8 @@ set moduleName horner_core
 set isTopModule 1
 set isCombinational 0
 set isDatapathOnly 0
-set isPipelined 0
-set pipeline_type none
+set isPipelined 1
+set pipeline_type function
 set FunctionProtocol ap_ctrl_chain
 set isOneStateSeq 0
 set ProfileFlag 0
@@ -77,13 +77,13 @@ set NewPortList {[
  	{ "name": "ap_rst_n", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "reset", "bundle":{"name": "ap_rst_n", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2"],
 		"CDFG" : "horner_core",
 		"Protocol" : "ap_ctrl_chain",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "1", "ap_idle" : "1", "real_start" : "0",
-		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
-		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "9", "EstimateLatencyMax" : "9",
+		"Pipeline" : "Aligned", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "3",
+		"VariableLatency" : "0", "ExactLatency" : "11", "EstimateLatencyMin" : "11", "EstimateLatencyMax" : "11",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -98,9 +98,7 @@ set RtlHierarchyInfo {[
 			{"Name" : "a1", "Type" : "None", "Direction" : "I"},
 			{"Name" : "a0", "Type" : "None", "Direction" : "I"}]},
 	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.control_s_axi_U", "Parent" : "0"},
-	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mac_muladd_16s_16s_26ns_26_4_1_U1", "Parent" : "0"},
-	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mac_muladd_16s_16s_26ns_26_4_1_U2", "Parent" : "0"},
-	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mac_muladd_16s_16s_26ns_26_4_1_U3", "Parent" : "0"}]}
+	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_32s_16s_42_2_1_U1", "Parent" : "0"}]}
 
 
 set ArgLastReadFirstWriteLatency {
@@ -108,17 +106,18 @@ set ArgLastReadFirstWriteLatency {
 		x {Type I LastRead 0 FirstWrite -1}
 		a3 {Type I LastRead 0 FirstWrite -1}
 		a2 {Type I LastRead 2 FirstWrite -1}
-		a1 {Type I LastRead 5 FirstWrite -1}
-		a0 {Type I LastRead 8 FirstWrite -1}}}
+		a1 {Type I LastRead 2 FirstWrite -1}
+		a0 {Type I LastRead 2 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "9", "Max" : "9"}
-	, {"Name" : "Interval", "Min" : "10", "Max" : "10"}
+	{"Name" : "Latency", "Min" : "11", "Max" : "11"}
+	, {"Name" : "Interval", "Min" : "3", "Max" : "3"}
 ]}
 
 set PipelineEnableSignalInfo {[
+	{"Pipeline" : "0", "EnableSignal" : "ap_enable_pp0"}
 ]}
 
 set Spec2ImplPortList { 

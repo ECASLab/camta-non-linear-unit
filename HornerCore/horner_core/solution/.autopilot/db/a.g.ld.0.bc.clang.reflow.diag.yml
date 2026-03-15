@@ -1,0 +1,41 @@
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: ./HornerCore.cpp, Line: 14, Column: 22 }
+Function:        _Z11horner_core8ap_fixedILi16ELi6EL9ap_q_mode5EL9ap_o_mode3ELi0EES2_S2_S2_S2_
+Args:            
+  - String:          'Loop '''
+  - LoopName:        VITIS_LOOP_14_1
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: ./HornerCore.cpp, Line: 10, Column: 0 }
+Function:        _Z11horner_core8ap_fixedILi16ELi6EL9ap_q_mode5EL9ap_o_mode3ELi0EES2_S2_S2_S2_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_14_1
+  - String:          ''' ('
+  - LoopLoc:         './HornerCore.cpp:14:22'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          horner_core
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Missed
+Pass:            reflow-pragma-loop-unroll
+Name:            PipelineRemovedByUnroll
+DebugLoc:        { File: ./HornerCore.cpp, Line: 10, Column: 0 }
+Function:        _Z11horner_core8ap_fixedILi16ELi6EL9ap_q_mode5EL9ap_o_mode3ELi0EES2_S2_S2_S2_
+Args:            
+  - String:          'Pipeline directive for loop '''
+  - LoopName:        VITIS_LOOP_14_1
+  - String:          ''' ('
+  - LoopLoc:         './HornerCore.cpp:14:22'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          horner_core
+  - String:          ''' has been removed because the loop is unrolled completely'
+...

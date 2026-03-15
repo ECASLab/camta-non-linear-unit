@@ -1,0 +1,250 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
+  **** SW Build 4023990 on Oct 11 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source C:/Xilinx/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running 'C:/Xilinx/Vitis_HLS/2023.2/bin/unwrapped/win64.o/vitis_hls.exe'
+INFO: [HLS 200-10] For user 'carlo' on host 'emilio' (Windows NT_amd64 version 6.2) on Sat Mar 14 19:09:26 -0600 2026
+INFO: [HLS 200-10] In directory 'C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA'
+INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
+Sourcing Tcl script '.\run_hls.tcl'
+INFO: [HLS 200-1510] Running: open_project camta_hls -reset 
+INFO: [HLS 200-10] Opening and resetting project 'C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls'.
+INFO: [HLS 200-1510] Running: set_top camta 
+INFO: [HLS 200-1510] Running: add_files src/camta.cpp 
+INFO: [HLS 200-10] Adding design file 'src/camta.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files src/horner_core.cpp 
+INFO: [HLS 200-10] Adding design file 'src/horner_core.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files src/camta.h 
+INFO: [HLS 200-10] Adding design file 'src/camta.h' to the project
+INFO: [HLS 200-1510] Running: add_files src/horner_core.h 
+INFO: [HLS 200-10] Adding design file 'src/horner_core.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb tb/camta_tb.cpp 
+INFO: [HLS 200-10] Adding test bench file 'tb/camta_tb.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 
+INFO: [HLS 200-10] Creating and opening solution 'C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1'.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xck26-sfvc784-2LV-c 
+INFO: [HLS 200-1611] Setting target device to 'xck26-sfvc784-2LV-c'
+INFO: [HLS 200-1510] Running: create_clock -period 4 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
+INFO: [HLS 200-1510] Running: config_rtl -deadlock_detection sim 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_conservative_mode=1 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_auto_max_ports=0 
+INFO: [HLS 200-1510] Running: config_export -format xo -ipname horner_core 
+INFO: [HLS 200-1510] Running: csim_design -clean 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [HLS 200-2036] Building debug C Simulation binaries
+   Compiling ../../../../tb/camta_tb.cpp in debug mode
+   Compiling ../../../../src/horner_core.cpp in debug mode
+   Compiling ../../../../src/camta.cpp in debug mode
+   Generating csim.exe
+In file included from C:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:150:0,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
+                 from ../../../../tb/../src/camta.h:4,
+                 from ../../../../tb/camta_tb.cpp:3:
+C:/Xilinx/Vitis_HLS/2023.2/include/gmp.h:58:0: warning: "__GMP_LIBGMP_DLL" redefined
+ #define __GMP_LIBGMP_DLL  0
+ 
+In file included from C:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140:0,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
+                 from ../../../../tb/../src/camta.h:4,
+                 from ../../../../tb/camta_tb.cpp:3:
+C:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:142:0: note: this is the location of the previous definition
+ #define __GMP_LIBGMP_DLL 1
+ 
+In file included from C:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:150:0,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
+                 from ../../../../src/horner_core.h:3,
+                 from ../../../../src/horner_core.cpp:1:
+C:/Xilinx/Vitis_HLS/2023.2/include/gmp.h:58:0: warning: "__GMP_LIBGMP_DLL" redefined
+ #define __GMP_LIBGMP_DLL  0
+ 
+In file included from C:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140:0,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
+                 from ../../../../src/horner_core.h:3,
+                 from ../../../../src/horner_core.cpp:1:
+C:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:142:0: note: this is the location of the previous definition
+ #define __GMP_LIBGMP_DLL 1
+ 
+In file included from C:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:150:0,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
+                 from ../../../../src/camta.h:4,
+                 from ../../../../src/camta.cpp:1:
+C:/Xilinx/Vitis_HLS/2023.2/include/gmp.h:58:0: warning: "__GMP_LIBGMP_DLL" redefined
+ #define __GMP_LIBGMP_DLL  0
+ 
+In file included from C:/Xilinx/Vitis_HLS/2023.2/include/hls_fpo.h:140:0,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/hls_half_fpo.h:19,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/hls_half.h:26,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_private.h:52,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/etc/ap_common.h:666,
+                 from C:/Xilinx/Vitis_HLS/2023.2/include/ap_fixed.h:9,
+                 from ../../../../src/camta.h:4,
+                 from ../../../../src/camta.cpp:1:
+C:/Xilinx/Vitis_HLS/2023.2/include/floating_point_v7_1_bitacc_cmodel.h:142:0: note: this is the location of the previous definition
+ #define __GMP_LIBGMP_DLL 1
+ 
+MSE = 4.94894e-006
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 4.119 seconds; current allocated memory: 0.891 MB.
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.128 seconds; current allocated memory: 170.605 MB.
+INFO: [HLS 200-10] Analyzing design file 'src/horner_core.cpp' ... 
+WARNING: [HLS 207-5536] 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead (src/horner_core.cpp:13:9)
+INFO: [HLS 200-10] Analyzing design file 'src/camta.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 6.275 seconds; current allocated memory: 173.371 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 200-1995] There were 1,640 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 256 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Unroll/Inline (step 4)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Array/Struct (step 1)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Array/Struct (step 2)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Array/Struct (step 3)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Array/Struct (step 4)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Array/Struct (step 5)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 90 instructions in the design after the 'Performance (step 1)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 90 instructions in the design after the 'Performance (step 2)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 90 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 90 instructions in the design after the 'Performance (step 4)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 113 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 114 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 7.661 seconds; current allocated memory: 174.973 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.005 seconds; current allocated memory: 174.973 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.086 seconds; current allocated memory: 179.727 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.039 seconds; current allocated memory: 181.199 MB.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (src/camta.cpp:28:1) in function 'camta'... converting 3 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.082 seconds; current allocated memory: 202.031 MB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.034 seconds; current allocated memory: 204.266 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'camta' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'horner_core' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'horner_core'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 6, function 'horner_core'
+WARNING: [HLS 200-871] Estimated clock period (2.979 ns) exceeds the target (target clock period: 4.000 ns, clock uncertainty: 1.080 ns, effective delay budget: 2.920 ns).
+Resolution: For help on HLS 200-871 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-871.html
+WARNING: [HLS 200-1016] The critical path in module 'horner_core' consists of the following:
+	'mul' operation 40 bit ('mul_ln16', src/horner_core.cpp:16) [25]  (2.979 ns)
+
+Resolution: For help on HLS 200-1016 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1016.html
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.391 seconds; current allocated memory: 208.316 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.111 seconds; current allocated memory: 209.637 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'camta' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'camta'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 8, function 'camta'
+WARNING: [HLS 200-871] Estimated clock period (2.979 ns) exceeds the target (target clock period: 4.000 ns, clock uncertainty: 1.080 ns, effective delay budget: 2.920 ns).
+Resolution: For help on HLS 200-871 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-871.html
+WARNING: [HLS 200-1016] The critical path in module 'camta' consists of the following:
+	'call' operation 16 bit ('call_ret', src/camta.cpp:27) to 'horner_core' [73]  (2.979 ns)
+
+Resolution: For help on HLS 200-1016 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1016.html
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.197 seconds; current allocated memory: 210.324 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.119 seconds; current allocated memory: 210.562 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'horner_core' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'mul_20s_16s_36_1_0': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_24s_16s_40_1_0': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'horner_core'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.17 seconds; current allocated memory: 212.691 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'camta' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/x' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/L' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a3_r0' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a2_r0' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a1_r0' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a0_r0' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a3_r1' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a2_r1' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a1_r1' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a0_r1' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a3_r2' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a2_r2' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a1_r2' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a0_r2' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'camta' to 'ap_ctrl_hs'.
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'camta' pipeline 'camta' pipeline type 'function pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'camta'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.649 seconds; current allocated memory: 214.605 MB.
+WARNING: [HLS 200-601] Overriding requested -ipname of 'horner_core' with 'camta'
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 0.457 seconds; current allocated memory: 218.703 MB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.818 seconds; current allocated memory: 221.066 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for camta.
+INFO: [VLOG 209-307] Generating Verilog RTL for camta.
+INFO: [HLS 200-789] **** Estimated Fmax: 335.63 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 17.515 seconds; current allocated memory: 50.746 MB.
+INFO: [HLS 200-1510] Running: export_design -format ip_catalog 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+
+****** Vivado v2023.2 (64-bit)
+  **** SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source run_ippack.tcl -notrace
+ipx::create_core: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 571.211 ; gain = 176.070
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2023.2/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Sat Mar 14 19:10:03 2026...
+INFO: [HLS 200-802] Generated output file camta_hls/solution1/impl/export.zip
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 12.997 seconds; current allocated memory: 6.078 MB.
+INFO: [HLS 200-112] Total CPU user time: 3 seconds. Total CPU system time: 2 seconds. Total elapsed time: 37.726 seconds; peak allocated memory: 227.270 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sat Mar 14 19:10:03 2026...

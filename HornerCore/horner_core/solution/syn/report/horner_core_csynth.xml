@@ -11,39 +11,42 @@
 <TopModelName>horner_core</TopModelName>
 <TargetClockPeriod>4.00</TargetClockPeriod>
 <ClockUncertainty>1.08</ClockUncertainty>
+<TargetInitiationInterval>1</TargetInitiationInterval>
 <FlowTarget>vitis</FlowTarget>
 </UserAssignments>
 
 <PerformanceEstimates>
-<PipelineType>no</PipelineType>
+<PipelineType>yes</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>1.996</EstimatedClockPeriod>
+<EstimatedClockPeriod>2.365</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>9</Best-caseLatency>
-<Average-caseLatency>9</Average-caseLatency>
-<Worst-caseLatency>9</Worst-caseLatency>
-<Best-caseRealTimeLatency>36.000 ns</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>36.000 ns</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>36.000 ns</Worst-caseRealTimeLatency>
-<Interval-min>10</Interval-min>
-<Interval-max>10</Interval-max>
+<Best-caseLatency>11</Best-caseLatency>
+<Average-caseLatency>11</Average-caseLatency>
+<Worst-caseLatency>11</Worst-caseLatency>
+<Best-caseRealTimeLatency>44.000 ns</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>44.000 ns</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>44.000 ns</Worst-caseRealTimeLatency>
+<PipelineInitiationInterval>3</PipelineInitiationInterval>
+<PipelineDepth>12</PipelineDepth>
+<Interval-min>3</Interval-min>
+<Interval-max>3</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>./HornerCore.cpp:12</SourceLocation>
+<SourceLocation>./HornerCore.cpp:11</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 
 <AreaEstimates>
 <Resources>
 <BRAM_18K>0</BRAM_18K>
-<DSP>3</DSP>
-<FF>218</FF>
-<LUT>311</LUT>
+<DSP>2</DSP>
+<FF>768</FF>
+<LUT>577</LUT>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'horner_core'" level="0">
-<item name = "Date">Tue Mar 10 17:53:54 2026
+<item name = "Date">Sat Mar 14 17:10:36 2026
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">horner_core</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">4.00 ns, 1.996 ns, 1.08 ns</column>
+<column name="ap_clk">4.00 ns, 2.365 ns, 1.08 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">9, 9, 36.000 ns, 36.000 ns, 10, 10, no</column>
+<column name="">11, 11, 44.000 ns, 44.000 ns, 3, 3, yes</column>
 </table>
 </item>
 <item name = "Detail">

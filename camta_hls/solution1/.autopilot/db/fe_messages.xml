@@ -1,0 +1,18 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_INVALID" msg_id="207-5536" msg_severity="WARNING" msg_loc="src/horner_core.cpp:13:9" msg_body="'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead">
+        <args ClangWarningOption="ignored-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="src/horner_core.cpp:10:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="horner_core" ARG_PragmaIsValid="1" ARG_PragmaOptions="off" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="src/horner_core.cpp:13:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="horner_core" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=mul core=Mul_LUT" ARG_PragmaType="resource" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/run_hls.tcl:47:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="camta" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=camta" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="src/camta.cpp:13:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="camta" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+
