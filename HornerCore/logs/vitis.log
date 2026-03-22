@@ -1,0 +1,15 @@
+16:00:50 INFO  : updated workspace path: 
+16:00:50 INFO  : updated workspace path: 
+16:00:50 INFO  : cmd.exe, /C, S:\Xilinx\Vitis\2023.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python S:\Xilinx\Vitis\2023.2\data\embeddedsw\scripts\pyesw\\repo.py -st  S:\Xilinx\Vitis\2023.2\data\embeddedsw && S:\Xilinx\Vitis\2023.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+16:00:52 INFO  : Successfully created repository data at C:\Users\josef\AppData\Local\Temp\rigel_lopper_josef11899658974496432190
+16:00:52 INFO  : cmd.exe, /C, S:\Xilinx\Vitis\2023.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python S:\Xilinx\Vitis\2023.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Users\josef\AppData\Local\Temp\rigel_lopper_josef17402881375687735062 -r C:\Users\josef\AppData\Local\Temp\rigel_lopper_josef11899658974496432190\.repo.yaml && S:\Xilinx\Vitis\2023.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+16:00:53 INFO  : Embedded Template List generated successfully
+16:00:53 INFO  : cmd.exe, /C, S:\Xilinx\Vitis\2023.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python S:\Xilinx\Vitis\2023.2\data\embeddedsw\scripts\pyesw\\repo.py -st  S:\Xilinx\Vitis\2023.2\data\embeddedsw && S:\Xilinx\Vitis\2023.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+16:00:54 INFO  : Successfully created repository data at C:\Users\josef\AppData\Local\Temp\rigel_lopper_josef9949815141474542025
+16:00:54 INFO  : cmd.exe, /C, S:\Xilinx\Vitis\2023.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python S:\Xilinx\Vitis\2023.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Users\josef\AppData\Local\Temp\rigel_lopper_josef2946916609282112620 -r C:\Users\josef\AppData\Local\Temp\rigel_lopper_josef9949815141474542025\.repo.yaml && S:\Xilinx\Vitis\2023.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+16:00:55 INFO  : Embedded Template List generated successfully
+16:01:46 INFO  : connection terminated
+16:01:46 INFO  : connection terminated
+16:01:46 INFO  : scheduling shutdown timer for 2 seconds ...
+16:01:48 INFO  : Terminating Vitis C++ Server
+16:01:48 INFO  : Vitis C++ Server terminated

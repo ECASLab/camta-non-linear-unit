@@ -1,0 +1,4 @@
+1 warning and 1 error generated.
+Error while processing C:\Users\carlo\OneDrive\Documents\Maestria\DAFPGA\Proyecto\Avances\proj_final_FPGA_CAMTA\camta_hls\solution1\.autopilot\db\horner_core.pp.0.cpp.
+clang-tidy applied 5 of 5 suggested fixes.
+Suppressed 1 warnings (1 with check filters).

@@ -13,22 +13,24 @@
 <SummaryOfTimingAnalysis>
 <TargetClockPeriod>4.00</TargetClockPeriod>
 <ClockUncertainty>1.08</ClockUncertainty>
-<EstimatedClockPeriod>1.996</EstimatedClockPeriod>
+<TargetInitiationInterval>1</TargetInitiationInterval>
+<EstimatedClockPeriod>2.365</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
-<Best-caseLatency>9</Best-caseLatency>
-<Average-caseLatency>9</Average-caseLatency>
-<Worst-caseLatency>9</Worst-caseLatency>
-<Best-caseRealTimeLatency>36.000 ns</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>36.000 ns</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>36.000 ns</Worst-caseRealTimeLatency>
-<PipelineInitiationInterval>10</PipelineInitiationInterval>
-<PipelineType>no</PipelineType>
+<Best-caseLatency>11</Best-caseLatency>
+<Average-caseLatency>11</Average-caseLatency>
+<Worst-caseLatency>11</Worst-caseLatency>
+<Best-caseRealTimeLatency>44.000 ns</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>44.000 ns</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>44.000 ns</Worst-caseRealTimeLatency>
+<PipelineInitiationInterval>3</PipelineInitiationInterval>
+<PipelineDepth>12</PipelineDepth>
+<PipelineType>yes</PipelineType>
 </SummaryOfOverallLatency>
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>./HornerCore.cpp:12</SourceLocation>
+<SourceLocation>./HornerCore.cpp:11</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 <AreaEstimates>
@@ -36,13 +38,13 @@
 <BRAM_18K>0</BRAM_18K>
 <AVAIL_BRAM>288</AVAIL_BRAM>
 <UTIL_BRAM>0</UTIL_BRAM>
-<DSP>3</DSP>
+<DSP>2</DSP>
 <AVAIL_DSP>1248</AVAIL_DSP>
 <UTIL_DSP>~0</UTIL_DSP>
-<FF>218</FF>
+<FF>768</FF>
 <AVAIL_FF>234240</AVAIL_FF>
 <UTIL_FF>~0</UTIL_FF>
-<LUT>311</LUT>
+<LUT>577</LUT>
 <AVAIL_LUT>117120</AVAIL_LUT>
 <UTIL_LUT>~0</UTIL_LUT>
 <URAM>0</URAM>

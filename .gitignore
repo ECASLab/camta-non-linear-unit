@@ -1,0 +1,13 @@
+# Vitis HLS logs
+vitis_hls.log
+logs/
+
+# Generated comparison outputs
+comparison_reports/
+
+# Python cache
+__pycache__/
+*.pyc
+
+camta_hls/
+HornerCore/

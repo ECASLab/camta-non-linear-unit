@@ -1,11 +1,11 @@
 {
   "0": {
-    "basicblocks": 64,
+    "basicblocks": 192,
     "calls": "",
     "file": "HornerCore.cpp",
-    "fileloc": 5,
-    "instructions": 124,
+    "fileloc": 4,
+    "instructions": 344,
     "name": "horner_core",
-    "total_instructions": 124
+    "total_instructions": 344
   }
 }

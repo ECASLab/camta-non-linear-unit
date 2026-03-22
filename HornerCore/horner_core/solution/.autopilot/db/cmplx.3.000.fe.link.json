@@ -1,17 +1,17 @@
 {
   "0": {
-    "basicblocks": 1,
+    "basicblocks": 13,
     "calls": "",
     "file": "HornerCore.cpp",
-    "fileloc": 5,
-    "instructions": 74,
+    "fileloc": 4,
+    "instructions": 104,
     "loads": {
-      "L": 3
+      "L": 4
     },
     "name": "horner_core",
     "stores": {
-      "L": 7
+      "L": 8
     },
-    "total_instructions": 1184
+    "total_instructions": 1358
   }
 }

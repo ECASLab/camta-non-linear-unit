@@ -1,0 +1,23 @@
+[
+  {
+    "functionLabel": "",
+    "functionName": "camta",
+    "id": 0,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "camta"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/run_hls.tcl",
+    "sourceLine": 47,
+    "success": true
+  }
+]

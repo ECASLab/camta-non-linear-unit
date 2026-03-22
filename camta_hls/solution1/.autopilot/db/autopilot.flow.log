@@ -1,0 +1,626 @@
+INFO-FLOW: Workspace C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1 opened at Sat Mar 14 19:09:27 -0600 2026
+Execute       send_msg_by_id INFO @200-1505@%s%s default  vivado 
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Execute     set_part xck26-sfvc784-2LV-c 
+INFO: [HLS 200-1510] Running: set_part xck26-sfvc784-2LV-c 
+Execute       create_platform xck26-sfvc784-2LV-c -board  
+DBG:HLSDevice: Trying to load device library: C:/Xilinx/Vitis_HLS/2023.2\lib\win64.o\xv_hlsvwrap.dll
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: C:/Xilinx/Vivado/2023.2/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xck26-sfvc784-2LV-c'
+Command       create_platform done; 1.519 sec.
+Execute       source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/util.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 1.658 sec.
+Execute     create_clock -period 4 -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 4 -name default 
+Execute       ap_set_clock -name default -period 4 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
+Execute     config_rtl -deadlock_detection sim 
+INFO: [HLS 200-1510] Running: config_rtl -deadlock_detection sim 
+Execute     config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+Execute     config_interface -m_axi_conservative_mode=1 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_conservative_mode=1 
+Execute     config_interface -m_axi_auto_max_ports=0 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_auto_max_ports=0 
+Execute     config_export -format xo -ipname horner_core 
+INFO: [HLS 200-1510] Running: config_export -format xo -ipname horner_core 
+Execute     csim_design -clean 
+INFO: [HLS 200-1510] Running: csim_design -clean 
+INFO-FLOW: Running SLX 'csim' proc: ::SLX::run_csim
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute       send_msg_by_id INFO @200-2036@%s debug 
+INFO: [HLS 200-2036] Building debug C Simulation binaries
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data info 
+Execute       source run_sim.tcl 
+Command       ap_source done; 0.192 sec.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command     csim_design done; 4.119 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 4.119 seconds; current allocated memory: 0.891 MB.
+Execute     csynth_design 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO-FLOW: Running SLX 'csynth' proc: ::SLX::run_csynth
+Execute       elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -skip_cdt=0 -skip_transform=0 -ng=0 -g=0 -opt_fp=0 -from_csynth_design=1 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.128 seconds; current allocated memory: 170.605 MB.
+Execute         set_directive_top camta -name=camta 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/tps/tcl/tcllib1.11.1/yaml/huddle.tcl 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/tps/tcl/tcllib1.11.1/yaml/json2huddle.tcl 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/tps/tcl/tcllib1.11.1/try/try.tcl 
+INFO: [HLS 200-10] Analyzing design file 'src/horner_core.cpp' ... 
+INFO-FLOW: Compiling one TU...
+INFO-FLOW: Handling src/horner_core.cpp as C++
+Execute         ap_part_info -name xck26-sfvc784-2LV-c -data info 
+INFO-FLOW: Running: GCC PP 39
+INFO-FLOW: Source preprocessing
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang src/horner_core.cpp -foptimization-record-file=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.cpp.clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info --sysroot C:/Xilinx/Vitis_HLS/2023.2/tps/mingw/8.3.0/win64.o/nt -fhls -fno-exceptions -insert-hls-directive=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/all.directive.json -E -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -Wdump-hls-pragmas -Wno-error=dump-hls-pragmas -hls-clock-period=4 -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-mingw32 -fno-threadsafe-statics -fno-use-cxa-atexit -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot -I C:/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -I /usr/include/x86_64-linux-gnu -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp {-hls-platform-db-name=C:/Xilinx/Vitis_HLS/2023.2\common/technology\xilinx/common/platform.db} -hls-platform-name=zynquplus_medium -device-resource-info=BRAM_288.000000_DSP_1248.000000_FF_234240.000000_LUT_117120.000000_SLICE_14640.000000_URAM_64.000000 -device-name-info=xck26-sfvc784-2LV-c > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.cpp.clang.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.cpp.clang.err.log
+INFO-FLOW: Done: GCC PP 39 time: 0.3 seconds per iteration
+INFO-FLOW: Source syntax check for synthesis
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fsyntax-only -fhls -target fpga64-xilinx-linux-gnu C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp {-hls-platform-db-name=C:/Xilinx/Vitis_HLS/2023.2\common/technology\xilinx/common/platform.db} -hls-platform-name=zynquplus_medium -device-resource-info=BRAM_288.000000_DSP_1248.000000_FF_234240.000000_LUT_117120.000000_SLICE_14640.000000_URAM_64.000000 -device-name-info=xck26-sfvc784-2LV-c > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/clang.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/clang.err.log
+WARNING: [HLS 207-5536] 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead (src/horner_core.cpp:13:9)
+Execute         clang_tidy xilinx-systemc-detector -desc systemc-detector C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp std=gnu++14 -target fpga  -directive=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/.systemc_flag 
+INFO-FLOW: exec C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-systemc-detector -import-directive=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/.systemc_flag -fix-errors C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command         clang_tidy done; 0.344 sec.
+INFO-FLOW: Running: clang-tidy CDT preprocess 39
+Execute         clang_tidy xilinx-directive2pragma -desc directive2pragma C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp std=gnu++14 -target fpga  -directive=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/all.directive.json 
+INFO-FLOW: exec C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-directive2pragma -import-directive=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/all.directive.json -fix-errors C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command         clang_tidy done; 0.344 sec.
+INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 0.3 seconds per iteration
+INFO-FLOW: Calling xilinx-label-all-loops ... 
+INFO-FLOW: Calling xilinx-aggregate-on-hls-vector ... 
+Execute         clang_tidy -errorcheck -desc loop-label xilinx-label-all-loops,xilinx-aggregate-on-hls-vector,,xilinx-warn-mayneed-no-ctor-attribute C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp std=gnu++14 -target fpga  
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang-tidy -export-fixes=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp.clang-tidy.loop-label.diag.yml -header-filter=.* --checks=-*,xilinx-label-all-loops,xilinx-aggregate-on-hls-vector,,xilinx-warn-mayneed-no-ctor-attribute -fix-errors C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp.clang-tidy.loop-label.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp.clang-tidy.loop-label.err.log
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/tps/tcl/tcllib1.11.1/yaml/yaml.tcl 
+Command         clang_tidy done; 0.893 sec.
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp.xilinx-dataflow-lawyer.diag.yml C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 -fstrict-dataflow > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp.xilinx-dataflow-lawyer.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp.xilinx-dataflow-lawyer.err.log
+Execute         ap_part_info -name xck26-sfvc784-2LV-c -data info 
+INFO-FLOW: compiling source code to llvm bc
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp.clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing -hls-emit-hint-scope C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -Wdump-hls-pragmas -Wno-error=dump-hls-pragmas -hls-clock-period=4 -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot -I C:/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.bc {-hls-platform-db-name=C:/Xilinx/Vitis_HLS/2023.2\common/technology\xilinx/common/platform.db} -hls-platform-name=zynquplus_medium -device-resource-info=BRAM_288.000000_DSP_1248.000000_FF_234240.000000_LUT_117120.000000_SLICE_14640.000000_URAM_64.000000 -device-name-info=xck26-sfvc784-2LV-c > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp.clang.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.pp.0.cpp.clang.err.log
+INFO: [HLS 200-10] Analyzing design file 'src/camta.cpp' ... 
+INFO-FLOW: Compiling one TU...
+INFO-FLOW: Handling src/camta.cpp as C++
+Execute         ap_part_info -name xck26-sfvc784-2LV-c -data info 
+INFO-FLOW: Running: GCC PP 39
+INFO-FLOW: Source preprocessing
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang src/camta.cpp -foptimization-record-file=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.cpp.clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info --sysroot C:/Xilinx/Vitis_HLS/2023.2/tps/mingw/8.3.0/win64.o/nt -fhls -fno-exceptions -insert-hls-directive=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/all.directive.json -E -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -Wdump-hls-pragmas -Wno-error=dump-hls-pragmas -hls-clock-period=4 -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-mingw32 -fno-threadsafe-statics -fno-use-cxa-atexit -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot -I C:/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -I /usr/include/x86_64-linux-gnu -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp {-hls-platform-db-name=C:/Xilinx/Vitis_HLS/2023.2\common/technology\xilinx/common/platform.db} -hls-platform-name=zynquplus_medium -device-resource-info=BRAM_288.000000_DSP_1248.000000_FF_234240.000000_LUT_117120.000000_SLICE_14640.000000_URAM_64.000000 -device-name-info=xck26-sfvc784-2LV-c > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.cpp.clang.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.cpp.clang.err.log
+INFO-FLOW: Done: GCC PP 39 time: 0.2 seconds per iteration
+INFO-FLOW: Source syntax check for synthesis
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fsyntax-only -fhls -target fpga64-xilinx-linux-gnu C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp {-hls-platform-db-name=C:/Xilinx/Vitis_HLS/2023.2\common/technology\xilinx/common/platform.db} -hls-platform-name=zynquplus_medium -device-resource-info=BRAM_288.000000_DSP_1248.000000_FF_234240.000000_LUT_117120.000000_SLICE_14640.000000_URAM_64.000000 -device-name-info=xck26-sfvc784-2LV-c > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/clang.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/clang.err.log
+Execute         clang_tidy xilinx-systemc-detector -desc systemc-detector C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp std=gnu++14 -target fpga  -directive=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/.systemc_flag 
+INFO-FLOW: exec C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-systemc-detector -import-directive=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/.systemc_flag -fix-errors C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command         clang_tidy done; 0.273 sec.
+INFO-FLOW: Running: clang-tidy CDT preprocess 39
+Execute         clang_tidy xilinx-directive2pragma -desc directive2pragma C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp std=gnu++14 -target fpga  -directive=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/all.directive.json 
+INFO-FLOW: exec C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-directive2pragma -import-directive=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/all.directive.json -fix-errors C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command         clang_tidy done; 0.508 sec.
+INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 0.5 seconds per iteration
+INFO-FLOW: Calling xilinx-label-all-loops ... 
+INFO-FLOW: Calling xilinx-aggregate-on-hls-vector ... 
+Execute         clang_tidy -errorcheck -desc loop-label xilinx-label-all-loops,xilinx-aggregate-on-hls-vector,,xilinx-warn-mayneed-no-ctor-attribute C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp std=gnu++14 -target fpga  
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang-tidy -export-fixes=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp.clang-tidy.loop-label.diag.yml -header-filter=.* --checks=-*,xilinx-label-all-loops,xilinx-aggregate-on-hls-vector,,xilinx-warn-mayneed-no-ctor-attribute -fix-errors C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp.clang-tidy.loop-label.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp.clang-tidy.loop-label.err.log
+Command         clang_tidy done; 0.627 sec.
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp.xilinx-dataflow-lawyer.diag.yml C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 -fstrict-dataflow > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp.xilinx-dataflow-lawyer.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp.xilinx-dataflow-lawyer.err.log
+Execute         ap_part_info -name xck26-sfvc784-2LV-c -data info 
+INFO-FLOW: compiling source code to llvm bc
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp.clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing -hls-emit-hint-scope C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -Wdump-hls-pragmas -Wno-error=dump-hls-pragmas -hls-clock-period=4 -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot -I C:/Xilinx/Vitis_HLS/2023.2/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E2__ -g -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.bc {-hls-platform-db-name=C:/Xilinx/Vitis_HLS/2023.2\common/technology\xilinx/common/platform.db} -hls-platform-name=zynquplus_medium -device-resource-info=BRAM_288.000000_DSP_1248.000000_FF_234240.000000_LUT_117120.000000_SLICE_14640.000000_URAM_64.000000 -device-name-info=xck26-sfvc784-2LV-c > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp.clang.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.pp.0.cpp.clang.err.log
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 6.275 seconds; current allocated memory: 173.371 MB.
+INFO-FLOW: Linking Debug ...
+INFO-FLOW: Linking dut bc code.
+Execute         run_link_or_opt -out C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.0.bc -args  "C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.g.bc" "C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.g.bc"  
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/llvm-link C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.g.bc C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.g.bc -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.0.bc > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.0.bc.llvm-link.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.0.bc.llvm-link.err.log
+INFO-FLOW: 
+Execute         run_link_or_opt -opt -out C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.1.lower.bc -args C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.0.bc -reflow-lower-math-intrinsics 
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.1.lower.bc.opt.diag.yml C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.0.bc -reflow-lower-math-intrinsics -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.1.lower.bc > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.1.lower.bc.opt.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.1.lower.bc.opt.err.log
+INFO-FLOW: 
+INFO-FLOW: Running: gen_design_size_report post-opt
+INFO-FLOW: Done: gen_design_size_report post-opt time: 0 seconds per iteration
+INFO-FLOW: Linking math bc lib
+Execute         run_link_or_opt -out C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.2.m1.bc -args C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.1.lower.bc -only-needed C:/Xilinx/Vitis_HLS/2023.2/win64/lib/libhlsm_39.bc C:/Xilinx/Vitis_HLS/2023.2/win64/lib/libhlsmc++_39.bc 
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/llvm-link C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.1.lower.bc -only-needed C:/Xilinx/Vitis_HLS/2023.2/win64/lib/libhlsm_39.bc C:/Xilinx/Vitis_HLS/2023.2/win64/lib/libhlsmc++_39.bc -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.2.m1.bc > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.2.m1.bc.llvm-link.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.2.m1.bc.llvm-link.err.log
+INFO-FLOW: 
+Command         run_link_or_opt done; 1.323 sec.
+Execute         run_link_or_opt -opt -out C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.3.fpc.bc -args C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=camta -reflow-float-conversion 
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.3.fpc.bc.opt.diag.yml C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=camta -reflow-float-conversion -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.3.fpc.bc > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.3.fpc.bc.opt.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.3.fpc.bc.opt.err.log
+INFO-FLOW: 
+INFO-FLOW: Running: gen_design_size_report post-opt
+INFO-FLOW: Done: gen_design_size_report post-opt time: 0 seconds per iteration
+Command         run_link_or_opt done; 0.603 sec.
+Execute         run_link_or_opt -out C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.4.m2.bc -args C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.3.fpc.bc -only-needed C:/Xilinx/Vitis_HLS/2023.2/win64/lib/libfloatconversion_39.bc 
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/llvm-link C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.3.fpc.bc -only-needed C:/Xilinx/Vitis_HLS/2023.2/win64/lib/libfloatconversion_39.bc -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.4.m2.bc > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.4.m2.bc.llvm-link.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.4.m2.bc.llvm-link.err.log
+INFO-FLOW: 
+Execute         run_link_or_opt -opt -out C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.5.gdce.bc -args C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.4.m2.bc -reflow-globaldce -hls-top-function-name=camta 
+INFO-FLOW: run_clang exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.5.gdce.bc.opt.diag.yml C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.4.m2.bc -reflow-globaldce -hls-top-function-name=camta -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.5.gdce.bc > C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.5.gdce.bc.opt.out.log 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.5.gdce.bc.opt.err.log
+INFO-FLOW: 
+INFO-FLOW: Running: gen_design_size_report post-opt
+INFO-FLOW: Done: gen_design_size_report post-opt time: 0 seconds per iteration
+Execute         send_msg_by_id INFO @200-777@%s Vivado 
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+Execute         is_m_axi_addr64 
+INFO-FLOW: Doing LTO.
+INFO-FLOW: run_clang (background poll_ms 5000) exec: C:/Xilinx/Vitis_HLS/2023.2/win64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.0.bc.clang.reflow.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fhls -mllvm -hls-top-function-name=camta -mllvm -hls-db-dir -mllvm C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db -emit-llvm -c -target fpga64-xilinx-none -mllvm -xcl-xmlinfo=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/../../../kernel.xml -mllvm -top-io-mapping-info=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/top-io-fe.xml -mllvm -hls-bitcode-version=3.1 -mllvm -reflow-enable-slave-interface-default-setting=true -mllvm -gen-kernel-xml=true -mllvm -default-maxi-offset=slave -mllvm -maxi-latency=0 -mllvm -hls-maxi-data-size-in-bits=8 -mllvm -hls-maxi-max-data-size-in-bits=1024 -mllvm -hls-max-widen-size-in-bits=0 -mllvm -xcl-kernel-max-mem-ports=0 -mllvm -maxi-read-trans=16 -mllvm -maxi-write-trans=16 -mllvm -maxi-read-burst-len=16 -mllvm -maxi-write-burst-len=16 -mllvm -reflow-enable-saxi-64bits=0 -mllvm -reflow-basic-block-instr-threshold=200000 -mllvm -reflow-auto-pipeline-threshold=64 -mllvm -reflow-enable-maxi-auto-id-channel=0 -mllvm -enable-fp-thr=0 -mllvm -reflow-bdd-simplify-threshold=1048576 -mllvm -reflow-fanout-threshold=16 -mllvm -assume-maxi-align=1 -mllvm -reflow-pipeline-style-llvm-setting=2 -mllvm -reflow-enable-dataflow-strict-mode-checking=1 -ftime-report -mllvm -time-passes -mllvm -reflow-auto-array-partition-mode=default -mllvm -reflow-enable-auto-array-partition=true -mllvm -reflow-enable-auto-parallel-performance-driven=true -mllvm -reflow-enable-partition-for-automation=true -mllvm -reflow-aggregate-bitwidth-threshold=4096 -mllvm -reflow-reserved-saxilite-registers=0 -mllvm -enable-reflow-auto-loop-pipeline -mllvm -reflow-max-unroll-threshold=409600 -mllvm -reflow-assume-no-address-wrap=true -mllvm -reflow-enable-occurrence-inference=true -mllvm -reflow-emit-hint-scope=true -mllvm -hls -mllvm -disable-inlined-alloca-merging=true -mllvm -default-clock-period=4 -x ir C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.5.gdce.bc -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.lto.bc {-hls-platform-db-name=C:/Xilinx/Vitis_HLS/2023.2\common/technology\xilinx/common/platform.db} -hls-platform-name=zynquplus_medium -device-resource-info=BRAM_288.000000_DSP_1248.000000_FF_234240.000000_LUT_117120.000000_SLICE_14640.000000_URAM_64.000000 -device-name-info=xck26-sfvc784-2LV-c 2> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.ld.0.bc.clang.reflow.err.log bg_poll_cmd: ::AP::poll_clang_39_closed_source
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 1,640 Compile/Link C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 1,640 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 256 Unroll/Inline (step 1) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 256 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 105 Unroll/Inline (step 2) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 105 Unroll/Inline (step 3) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 105 Unroll/Inline (step 4) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Unroll/Inline (step 4)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 105 Array/Struct (step 1) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Array/Struct (step 1)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 105 Array/Struct (step 2) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Array/Struct (step 2)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 105 Array/Struct (step 3) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Array/Struct (step 3)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 105 Array/Struct (step 4) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Array/Struct (step 4)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 105 Array/Struct (step 5) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 105 instructions in the design after the 'Array/Struct (step 5)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 90 Performance (step 1) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 90 instructions in the design after the 'Performance (step 1)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 90 Performance (step 2) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 90 instructions in the design after the 'Performance (step 2)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 90 Performance (step 3) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 90 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 90 Performance (step 4) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 90 instructions in the design after the 'Performance (step 4)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 113 HW Transforms (step 1) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 113 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+Execute         send_msg_by_id INFO @200-1995@%s%s%s 114 HW Transforms (step 2) C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt 
+INFO: [HLS 200-1995] There were 114 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth_design_size.rpt
+INFO-FLOW: DBG:PUTS: copy_raw_kernel_xml ap_link_39: copying raw kernel.xml: C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/../../../kernel.xml -> C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/kernel.internal.xml
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 7.661 seconds; current allocated memory: 174.973 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.005 seconds; current allocated memory: 174.973 MB.
+Execute         opt_and_import_c a -opt_level=2 -skip_syncheck=0 -ng=0 -keep_printf=0 
+Execute           cleanup_all_models 
+INFO: [HLS 200-10] Starting code transformations ...
+INFO-FLOW: Running Standard Transforms...
+Execute           transform -hls -share-std-xform -demangle-name -inline-byval-memcpy -always-inline -promote-dbg-pointer -interface-preproc -mem2reg -scalarrepl -mem2reg -keep-read-access -instcombine -dce -promote-dbg-pointer -bitop-raise -loop-simplify -indvarspre -indvars -loop-simplify -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -simplifycfg -mem2reg -globalopt -global-constprop -deadargelim -instcombine -simplifycfg -scalarrepl -instcombine -reassociate -licm -simplifycfg -loop-simplify -indvars -instcombine -simplifycfg -mem2reg -loop-simplify -indvars -instcombine -gvn -gvn -instcombine -adce -break-crit-edges -simplifycfg -loop-delete -global-array-opt -dce -dse -adce -find-syn-modules -top camta -deadargelim -mem2reg -instcombine -dce -presyn-prepare -interface-preproc -syn-check -check-rec-only -find-region -simplifycfg -func-extr -function-inline -globaldce -mem2reg -instcombine -dce -gvn -globaldce -adce -adse -constprop -instcombine -bit-constprop -instcombine -dce -simplifycfg -bitop-raise -simplifycfg -dce -loop-delete -reassociate -globalopt -global-privatize -mem2reg -dce -global-constprop -pointer-simplify -constprop -dce -auto-shift-reg-idiom -promote-dbg-pointer -norm-name C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.0.bc -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.1.bc -f -phase std-opt 
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.086 seconds; current allocated memory: 179.727 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO-FLOW: Checking Synthesizability 1/2..
+Execute           transform -hls -syn-check -check-rec-only -scalarrepl -norm-name -dce -mem2reg -instcombine -directive-preproc -mem2reg -dse -dce -dce -pag -array-normalize -instcombine -dce -array-seg-normalize -instcombine -dce -data-pack -instcombine -dce -inst-simplify -array-flatten -instcombine -dce -array-burst -dce -deadargelim -promote-global-argument -simplifycfg -mem2reg -globaldce -dce -deadargelim -dce -instcombine -function-inline -globaldce -dce -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -dse -adse -instcombine -ptrLegalization -simplifycfg -dce -instcombine -pointer-simplify -ptrArgReplace -dce -instcombine -resolve-double-ptr -scalarrepl -norm-name -dce -mem2reg -instcombine -ptrLegalization -simplifycfg -deadargelim -instcombine -dce -inst-simplify -directive-preproc -mem2reg -dse -dce -globaldce C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.1.bc -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.2.prechk.bc -f 
+INFO-FLOW: Checking Synthesizability 2/2..
+Execute           transform -syn-check C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.2.prechk.bc -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.2.bc -f -phase syn-check 
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.039 seconds; current allocated memory: 181.199 MB.
+INFO-FLOW: Compiler optimizing ...
+INFO-FLOW: Share syncheck's 1.bc for syn flow: copy C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.g.1.bc to C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.o.1.bc
+INFO-FLOW: Presyn 1...
+Execute           transform -hls -tmp C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db -interface-port-rename -directive-preproc -mem2reg -dse -dce -scalarrepl -norm-name -deadargelim -mem2reg -instcombine -dce -simplifycfg -dce -resource-proc -clib-intrinsic-prepare -dce -func-buffer -dce -pag -array-normalize -func-legal -instcombine -gvn -constprop -dce -simplifycfg -mem2reg -globaldce -resolve-double-ptr -dce -deadargelim -dce -instcombine -ptrArgReplace -mem2reg -dce -array-seg-normalize -deadargelim -instcombine -dce -directive-preproc -mem2reg -dse -dce -pointer-simplify -dce -port-alignment -dce -interface-preproc -data-pack -instcombine -dce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -loop-simplify -indvars -instcombine -gvn -loop-simplify -mem2reg -dce -find-region -instcombine -inst-simplify -interface-preproc -cfgopt -instcombine -indvars -auto-loop-unroll -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -clean-region -attach-range -gvn -inst-simplify -constprop -simplifycfg -dce -pointer-simplify -dce -globalopt -constprop -dce -array-promote -scalar-auto-dep-elim -constprop -dce -ptrArgReplace -mem2reg -simplifycfg -dce -instcombine -dce -array-transform-check -array-reshape -instcombine -simplifycfg -dce -ptrArgReplace -deadargelim -mem2reg -instcombine -simplifycfg -dce -indvars -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -duplicate-dataflow-processes -globaldce -instcombine -array-partition -prepare-dynamic-array-partition -instcombine -simplifycfg -dce -ptrArgReplace -global-constprop -deadargelim -mem2reg -func-legal -dce -global-constprop -deadargelim -mem2reg -simplifycfg -dce -merge-param -deadargelim -globalopt -constprop -dce -array-promote -scalar-auto-dep-elim -constprop -dce -ptrArgReplace -mem2reg -simplifycfg -dce -mem-intrinsic-preproc -dce -global-internalize -global-privatize -mem2reg -globaldce -promote-global-argument -ptrArgReplace -mem2reg -dce -globalopt -mergereturn -simplify-global-access -mem2reg -dce -pointer-simplify -dce -functionattrs -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -dce -norm-name -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -accesses-merge -function-inline -complex-op-raise -inst-simplify -globaldce -func-legal -dce -loop-bound -arraycheck -bitwidthmin2 -bitwidthmin2 -on-by-dataflow -loop-delete -instcombine -simplifycfg -globaldce -dce -gvn -deadargelim -dce -loop-simplify -clean-region -simplifycfg -propagate-stable-arguments -loop-stream -instcombine -simplifycfg -dce -globaldce -duplicate-dataflow-processes -stream-intrinsic-preproc -dce -check-ap-stream -loop-simplify -eliminate-keepreads -extract-dataflow-in-loop -loop-simplify -dce -gvn -deadargelim -dse -duplicate-dataflow-processes -check-dataflow-syntax -legalize-stream-variable -globaldce -legalize-global -extract-subproc -dce -dead-channel-elimination -canonicalize-gep -globaldce -dce -gvn -hls-dead-arg-elim -deadargelim -directive-preproc -canonicalize-dataflow -dce -globaldce -scalar-preprocessing -scalar-propagation2 -scalar-stream -deadargelim -globaldce -mem2reg -check-dataflow-channels -function-stream -dce -globaldce -prop-fifo-spec -internal-stream-gen -canonicalize-gep -globaldce -dce -gvn -deadargelim -mergereturn -indvars -loop-simplify -instcombine -array-stream -array-seg-normalize -array-partition -clean-array-spec -func-legal -instcombine -simplifycfg -dce -bundle-memfifo-ops -deadargelim -directive-preproc -mem2reg -dse -dce -group-axi-access -licm -simplifycfg -dce -loop-delete -hls-display -norm-name C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.o.1.bc -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.o.1.tmp.bc -f 
+INFO-FLOW: Presyn 2...
+Execute           transform -hls -keep-callgraph -scalarrepl -mem2reg -port-alignment -attach-range -dce -pipe-mux-gen -indvars -loop-bound -inst-simplify -instcombine -dce -merge-array-access -mem2reg -dce -clean-region -mergereturn -if-conv -instcombine -dce -constprop -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -scalarrepl -mem2reg -global-constprop -deadargelim -deadargelim -instcombine -dce -simplifycfg -ptrArgReplace -mem2reg -function-inline -globaldce -mem2reg -instcombine -dce -expr-balance -instcombine -dce -bitwidthmin2 -bitwidthmin2 -interface-preproc -directive-preproc -inst-rectify -instcombine -dce -functionattrs -constprop -instcombine -bit-constprop -simplify-global-access -globalopt -globaldce -inst-simplify -instcombine -elimdeaddata -dce -loop-delete -simplifycfg -loop-simplify -barrier -norm-name C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.o.1.tmp.bc -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.o.2.bc -f -phase presyn 
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (src/camta.cpp:28:1) in function 'camta'... converting 3 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.082 seconds; current allocated memory: 202.031 MB.
+INFO-FLOW: Building ssdm...
+Execute           transform -hls -auto-function-inline -globaldce -ptrArgReplace -mem2reg -dce -reset-lda -loop-simplify -indvars -aggr-aa -licm -loop-dep -loop-bound -licm -loop-simplify -loop-sink-hoist -flattenloopnest -array-flatten -gvn -instcombine -dce -array-map -dce -func-legal -gvn -adce -instcombine -cfgopt -simplifycfg-lite -loop-simplify -array-burst -promote-global-argument -dce -array-seg-normalize -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -gvn -gvn -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -dse -adse -adce -licm -inst-simplify -dce -globaldce -instcombine -array-stream -eliminate-keepreads -instcombine -dce -deadargelim -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -mem2reg -norm-name -mem2reg -instcombine -dse -adse -adce -ptrLegalization -dce -array-flatten -dce -instcombine -check-doubleptr -loop-rot -constprop -cfgopt -simplifycfg-lite -loop-simplify -indvars -pointer-simplify -dce -loop-bound -loop-simplify -loop-preproc -constprop -global-constprop -gvn -mem2reg -instcombine -dce -loop-bound -loop-merge -dce -deadargelim -dce -canonicalize-dataflow -dce -deadargelim -globaldce -mem2reg -bram-byte-enable -inst-simplify -inst-rectify -instcombine -adce -deadargelim -load-elim -read-loop-dep -loop-simplify -loop-extract-inner -directive-preproc -bitwidthmin2 -bitwidthmin2 -read-loop-dep -interface-preproc -directive-preproc -interface-gen -bram-byte-enable-spec-prop -deadargelim -inst-simplify -dce -mem2reg -instcombine -gvn -dce -adse -loop-bound -instcombine -cfgopt -simplifycfg-lite -loop-simplify -clean-region -io-protocol -find-region -mem2reg -bitop-raise -complex-op-raise -inst-simplify -inst-rectify -instcombine -adce -deadargelim -float-op-raise -loop-simplify -phi-opt -bitop-raise -cfgopt -simplifycfg-lite -strip-dead-prototypes -interface-lower -bitop-lower -intrinsic-lower -auto-function-inline -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -inst-simplify -simplifycfg-lite -loop-simplify -mergereturn -inst-simplify -inst-rectify -globaldce -dce -load-elim -bitop-lower -float-op-raise -fma-raise -loop-rewind -pointer-simplify -dce -cfgopt -dce -loop-bound -loop-dep -read-loop-dep -dce -dyn-mem-reuse -dce -recurrence-min -dce -share-scalar-alloca -deadargelim -dce -check-stream -norm-name -legalize -validate-dataflow -inst-clarity -bitwidth -dce -dump-loop-dep-to-ir -check-all-ssdm -dump-complexity-metric -cdfg-build C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.o.2.bc -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/a.o.3.bc -f -phase build-ssdm 
+Execute             auto_get_db
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.034 seconds; current allocated memory: 204.266 MB.
+INFO-FLOW: Finish building internal data model.
+Command         opt_and_import_c done; 0.267 sec.
+Command       elaborate done; 14.252 sec.
+Execute       ap_eval exec zip -j C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/dut.hcp $dbDir/a.o.3.bc $dbDir/${topname}.rtl_wrap.cfg.tcl $dbDir/apatb_${topname}.cpp $dbDir/apatb_${topname}_util.cpp $dbDir/apatb_${topname}_ir.ll $dbDir/mapper_${topname}.cpp $dbDir/top-io-fe.xml $dbDir/kernel.internal.xml $workdir/../hls.app 
+Command       ap_eval done; 0.116 sec.
+Execute       autosyn -from_csynth_design=1 
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO-FLOW: Synthesizing C/C++ design ...
+INFO: [HLS 200-10] Synthesizing 'camta' ...
+Execute         ap_set_top_model camta 
+Execute         get_model_list camta -filter all-wo-channel -topdown 
+Execute         preproc_iomode -model camta 
+Execute         preproc_iomode -model horner_core 
+Execute         get_model_list camta -filter all-wo-channel 
+INFO-FLOW: Model list for configure: horner_core camta
+INFO-FLOW: Configuring Module : horner_core ...
+Execute         set_default_model horner_core 
+Execute         apply_spec_resource_limit horner_core 
+INFO-FLOW: Configuring Module : camta ...
+Execute         set_default_model camta 
+Execute         apply_spec_resource_limit camta 
+INFO-FLOW: Model list for preprocess: horner_core camta
+INFO-FLOW: Preprocessing Module: horner_core ...
+Execute         set_default_model horner_core 
+Execute         cdfg_preprocess -model horner_core 
+Execute         rtl_gen_preprocess horner_core 
+INFO-FLOW: Preprocessing Module: camta ...
+Execute         set_default_model camta 
+Execute         cdfg_preprocess -model camta 
+Execute         rtl_gen_preprocess camta 
+INFO-FLOW: Model list for synthesis: horner_core camta
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'horner_core' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         set_default_model horner_core 
+Execute         schedule -model horner_core 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'horner_core'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 6, function 'horner_core'
+WARNING: [HLS 200-871] Estimated clock period (2.979 ns) exceeds the target (target clock period: 4.000 ns, clock uncertainty: 1.080 ns, effective delay budget: 2.920 ns).
+WARNING: [HLS 200-1016] The critical path in module 'horner_core' consists of the following:
+	'mul' operation 40 bit ('mul_ln16', src/horner_core.cpp:16) [25]  (2.979 ns)
+
+INFO: [SCHED 204-11] Finished scheduling.
+Command         schedule done; 0.171 sec.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.391 seconds; current allocated memory: 208.316 MB.
+Execute         syn_report -verbosereport -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.verbose.sched.rpt 
+Execute           list_part -family xck26-sfvc784-2LV-c 
+Execute             ap_family_info -name xck26-sfvc784-2LV-c -data names 
+Execute             ap_part_info -quiet -name xck26-sfvc784-2LV-c -data family 
+Execute         db_write -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.sched.adb -f 
+INFO-FLOW: Finish scheduling horner_core.
+Execute         set_default_model horner_core 
+Execute         bind -model horner_core 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.111 seconds; current allocated memory: 209.637 MB.
+Execute         syn_report -verbosereport -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.verbose.bind.rpt 
+Execute           list_part -family xck26-sfvc784-2LV-c 
+Execute             ap_family_info -name xck26-sfvc784-2LV-c -data names 
+Execute             ap_part_info -quiet -name xck26-sfvc784-2LV-c -data family 
+Execute         db_write -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.bind.adb -f 
+INFO-FLOW: Finish binding horner_core.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'camta' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         set_default_model camta 
+Execute         schedule -model camta 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'camta'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 8, function 'camta'
+WARNING: [HLS 200-871] Estimated clock period (2.979 ns) exceeds the target (target clock period: 4.000 ns, clock uncertainty: 1.080 ns, effective delay budget: 2.920 ns).
+WARNING: [HLS 200-1016] The critical path in module 'camta' consists of the following:
+	'call' operation 16 bit ('call_ret', src/camta.cpp:27) to 'horner_core' [73]  (2.979 ns)
+
+INFO: [SCHED 204-11] Finished scheduling.
+Command         schedule done; 0.122 sec.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.197 seconds; current allocated memory: 210.324 MB.
+Execute         syn_report -verbosereport -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.verbose.sched.rpt 
+Execute           list_part -family xck26-sfvc784-2LV-c 
+Execute             ap_family_info -name xck26-sfvc784-2LV-c -data names 
+Execute             ap_part_info -quiet -name xck26-sfvc784-2LV-c -data family 
+Execute         db_write -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.sched.adb -f 
+INFO-FLOW: Finish scheduling camta.
+Execute         set_default_model camta 
+Execute         bind -model camta 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.119 seconds; current allocated memory: 210.562 MB.
+Execute         syn_report -verbosereport -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.verbose.bind.rpt 
+Execute           list_part -family xck26-sfvc784-2LV-c 
+Execute             ap_family_info -name xck26-sfvc784-2LV-c -data names 
+Execute             ap_part_info -quiet -name xck26-sfvc784-2LV-c -data family 
+Execute         db_write -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.bind.adb -f 
+INFO-FLOW: Finish binding camta.
+Execute         get_model_list camta -filter all-wo-channel 
+INFO-FLOW: Preprocessing for RTLGen ...
+Execute         rtl_gen_preprocess horner_core 
+Execute         rtl_gen_preprocess camta 
+INFO-FLOW: Model list for RTL generation: horner_core camta
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'horner_core' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         create_rtl_model horner_core -top_prefix camta_ -sub_prefix camta_ -mg_file C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.compgen.tcl 
+INFO: [RTGEN 206-100] Generating core module 'mul_20s_16s_36_1_0': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_24s_16s_40_1_0': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'horner_core'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.17 seconds; current allocated memory: 212.691 MB.
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.rtl_wrap.cfg.tcl 
+Execute         gen_rtl horner_core -style xilinx -f -lang vhdl -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/vhdl/camta_horner_core 
+Execute         gen_rtl horner_core -style xilinx -f -lang vlog -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/verilog/camta_horner_core 
+Execute         syn_report -csynth -model horner_core -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/horner_core_csynth.rpt 
+Execute           list_part -family xck26-sfvc784-2LV-c 
+Execute             ap_family_info -name xck26-sfvc784-2LV-c -data names 
+Execute             ap_part_info -quiet -name xck26-sfvc784-2LV-c -data family 
+Execute         syn_report -rtlxml -model horner_core -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/horner_core_csynth.xml 
+Execute           list_part -family xck26-sfvc784-2LV-c 
+Execute             ap_family_info -name xck26-sfvc784-2LV-c -data names 
+Execute             ap_part_info -quiet -name xck26-sfvc784-2LV-c -data family 
+Execute         syn_report -verbosereport -model horner_core -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.verbose.rpt 
+Execute           list_part -family xck26-sfvc784-2LV-c 
+Execute             ap_family_info -name xck26-sfvc784-2LV-c -data names 
+Execute             ap_part_info -quiet -name xck26-sfvc784-2LV-c -data family 
+Execute         db_write -model horner_core -f -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.adb 
+Execute         db_write -model horner_core -bindview -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/design.bindinfo.xml 
+Execute         gen_tb_info horner_core -p C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'camta' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         create_rtl_model camta -top_prefix  -sub_prefix camta_ -mg_file C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.compgen.tcl 
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/x' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/L' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a3_r0' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a2_r0' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a1_r0' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a0_r0' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a3_r1' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a2_r1' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a1_r1' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a0_r1' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a3_r2' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a2_r2' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a1_r2' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'camta/a0_r2' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'camta' to 'ap_ctrl_hs'.
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'camta' pipeline 'camta' pipeline type 'function pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'camta'.
+Command         create_rtl_model done; 0.452 sec.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.649 seconds; current allocated memory: 214.605 MB.
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.rtl_wrap.cfg.tcl 
+Execute         gen_rtl camta -istop -style xilinx -f -lang vhdl -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/vhdl/camta 
+Execute         gen_rtl camta -istop -style xilinx -f -lang vlog -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/verilog/camta 
+Execute         syn_report -csynth -model camta -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/camta_csynth.rpt 
+Execute           list_part -family xck26-sfvc784-2LV-c 
+Execute             ap_family_info -name xck26-sfvc784-2LV-c -data names 
+Execute             ap_part_info -quiet -name xck26-sfvc784-2LV-c -data family 
+Execute         syn_report -rtlxml -model camta -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/camta_csynth.xml 
+Execute           list_part -family xck26-sfvc784-2LV-c 
+Execute             ap_family_info -name xck26-sfvc784-2LV-c -data names 
+Execute             ap_part_info -quiet -name xck26-sfvc784-2LV-c -data family 
+Execute         syn_report -verbosereport -model camta -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.verbose.rpt 
+Execute           list_part -family xck26-sfvc784-2LV-c 
+Execute             ap_family_info -name xck26-sfvc784-2LV-c -data names 
+Execute             ap_part_info -quiet -name xck26-sfvc784-2LV-c -data family 
+Execute         db_write -model camta -f -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.adb 
+Execute         db_write -model camta -bindview -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/design.bindinfo.xml 
+Execute         gen_tb_info camta -p C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta 
+Execute         export_constraint_db -f -tool general -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.constraint.tcl 
+Execute         syn_report -designview -model camta -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.design.xml 
+Execute         syn_report -csynthDesign -model camta -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth.rpt -MHOut C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/kernel_module_hierarchy.tcl 
+Execute           list_part -family xck26-sfvc784-2LV-c 
+Execute             ap_family_info -name xck26-sfvc784-2LV-c -data names 
+Execute             ap_part_info -quiet -name xck26-sfvc784-2LV-c -data family 
+Execute         syn_report -wcfg -model camta -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta_dataflow_ana.wcfg 
+Execute         syn_report -protoinst -model camta -o C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.protoinst 
+Execute         sc_get_clocks camta 
+Execute         sc_get_portdomain camta 
+INFO-FLOW: Model list for RTL component generation: horner_core camta
+INFO-FLOW: Handling components in module [horner_core] ... 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.compgen.tcl 
+INFO-FLOW: Found component camta_mul_20s_16s_36_1_0.
+INFO-FLOW: Append model camta_mul_20s_16s_36_1_0
+INFO-FLOW: Found component camta_mul_24s_16s_40_1_0.
+INFO-FLOW: Append model camta_mul_24s_16s_40_1_0
+INFO-FLOW: Handling components in module [camta] ... 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.compgen.tcl 
+INFO-FLOW: Append model horner_core
+INFO-FLOW: Append model camta
+INFO-FLOW: Generating RTL model list ...
+INFO-FLOW: All models in this session: camta_mul_20s_16s_36_1_0 camta_mul_24s_16s_40_1_0 horner_core camta
+INFO-FLOW: Generating C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/autopilot.rtl.models.txt file...
+INFO-FLOW: To file: write model camta_mul_20s_16s_36_1_0
+INFO-FLOW: To file: write model camta_mul_24s_16s_40_1_0
+INFO-FLOW: To file: write model horner_core
+INFO-FLOW: To file: write model camta
+INFO-FLOW: Generating C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/autopilot.rtl.models.tcl file...
+INFO-FLOW: Finished generating RTL model list.
+
+
+INFO-FLOW: RTL Generation done.
+INFO-FLOW: CAS Generation done.
+INFO-FLOW: CBC Generation done.
+INFO-FLOW: DBG:PROC: ::AESL_AUTOMG::auto_generate_csynth_design
+Execute         send_msg_by_id WARNING @200-601@%s%s horner_core camta 
+WARNING: [HLS 200-601] Overriding requested -ipname of 'horner_core' with 'camta'
+INFO-FLOW: DBG:PUTS: read_platform_lib C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/common.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/interface.gen 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/util.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/DSP48/dsp48.gen 
+INFO-FLOW: DBG:PUTS:   using AESL_AUTOCG::g_clock_period=4.000 (was NA)
+INFO-FLOW: DBG:PROC: ::AESL_AUTOMG::generate_ip_cores gen_sim_model='1' gen_fp_models='0' gen_for_export='0' dstSCDir='' dstVhdlDir='C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/vhdl' dstVlogDir='C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/vlog' tclDir='C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db' modelList='camta_mul_20s_16s_36_1_0
+camta_mul_24s_16s_40_1_0
+horner_core
+camta
+' expOnly='0'
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute         ap_part_info -name xck26-sfvc784-2LV-c -data names -quiet 
+Execute         ap_part_info -name xck26-sfvc784-2LV-c -data info -quiet 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.compgen.tcl 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.compgen.tcl 
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 0.457 seconds; current allocated memory: 218.703 MB.
+INFO-FLOW: DBG:PROC: ::HLSREPORTS::create_csynth_xml bind_info_var='bind_info' RtlSubPrefix='camta_' outfile=''
+INFO-FLOW: Running: create_csynth_xml read xml data
+INFO-FLOW: Done: create_csynth_xml read xml data time: 0 seconds per iteration
+INFO-FLOW: Running: create_csynth_xml bind info
+INFO-FLOW: Done: create_csynth_xml bind info time: 0 seconds per iteration
+INFO-FLOW: Running: create_csynth_xml config info
+INFO-FLOW: Done: create_csynth_xml config info time: 0.3 seconds per iteration
+INFO-FLOW: Running: create_csynth_xml write xml
+INFO-FLOW: Done: create_csynth_xml write xml time: 0 seconds per iteration
+INFO-FLOW: DBG:PUTS:      create_csynth_xml wrote csynth_xml=C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/syn/report/csynth.xml
+INFO-FLOW: DBG:PROC: ::AP::DESIGN_DATA::generate_json generate_bd_files='0' generate_xo_files='0' modelList='camta_mul_20s_16s_36_1_0
+camta_mul_24s_16s_40_1_0
+horner_core
+camta
+' rtl_lang='both' bootstrap_tcl='false' outdir='' outfilename=''
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/top-io-be.tcl 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.rtl_wrap.cfg.tcl 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.compgen.dataonly.tcl 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.tbgen.tcl 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute         ap_part_info -name xck26-sfvc784-2LV-c -data names -quiet 
+Execute         ap_part_info -name xck26-sfvc784-2LV-c -data info -quiet 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.constraint.tcl 
+Execute         sc_get_clocks camta 
+Execute         source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PROC: ::HLSREPORTS::add_csynth_report_sections bind_info_dict='adapter_nodes {} report_dict {TOPINST camta MODULE2INSTS {camta camta horner_core grp_horner_core_fu_140} INST2MODULE {camta camta grp_horner_core_fu_140 horner_core} INSTDATA {camta {DEPTH 1 CHILDREN grp_horner_core_fu_140} grp_horner_core_fu_140 {DEPTH 2 CHILDREN {}}} MODULEDATA {horner_core {BINDINFO {{BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE mul PRAGMA yes RTLNAME mul_20s_16s_36_1_0_U1 SOURCE src/horner_core.cpp:14 VARIABLE mul_ln14 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME acc_1_fu_125_p2 SOURCE src/horner_core.cpp:15 VARIABLE acc_1 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE mul PRAGMA yes RTLNAME mul_24s_16s_40_1_0_U2 SOURCE src/horner_core.cpp:16 VARIABLE mul_ln16 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME acc_2_fu_163_p2 SOURCE src/horner_core.cpp:17 VARIABLE acc_2 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE mul PRAGMA yes RTLNAME mul_24s_16s_40_1_0_U3 SOURCE src/horner_core.cpp:18 VARIABLE mul_ln18 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op mul}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME acc_3_fu_193_p2 SOURCE src/horner_core.cpp:19 VARIABLE acc_3 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op add}}} AREA {DSP 0 BRAM 0 URAM 0}} camta {BINDINFO {{BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME sub_ln17_fu_153_p2 SOURCE src/camta.cpp:17 VARIABLE sub_ln17 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 STORAGESUBTYPE {} DISPNAME {bind_op sub}}} AREA {DSP 0 BRAM 0 URAM 0}}}}'
+INFO-FLOW: DBG:PUTS:      update_csynth_reports json2rpt_hw_sw_interfaces
+INFO-FLOW: Running: gen_csynth_sec_pragma
+INFO-FLOW: Done: gen_csynth_sec_pragma time: 0 seconds per iteration
+INFO-FLOW: DBG:PUTS:      update_csynth_reports wrote xml
+INFO-FLOW: DBG:PUTS:      update_csynth_reports appended to csynth rpt file
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.818 seconds; current allocated memory: 221.066 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for camta.
+INFO: [VLOG 209-307] Generating Verilog RTL for camta.
+Execute         syn_report -model camta -printsummary 
+INFO: [HLS 200-789] **** Estimated Fmax: 335.63 MHz
+Command       autosyn done; 3.035 sec.
+Command     csynth_design done; 17.515 sec.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 17.515 seconds; current allocated memory: 50.746 MB.
+Execute     export_design -format ip_catalog 
+INFO: [HLS 200-1510] Running: export_design -format ip_catalog 
+Execute       config_export -format=ip_catalog 
+INFO-FLOW: DBG:PUTS: export_design_wrap: -format ip_catalog -rtl verilog -ipname horner_core
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS:   auto_impl: pack: -export -rtl verilog
+INFO-FLOW: DBG:PROC: ::AESL_AUTOIMPL::auto_impl args='-export -rtl verilog'
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+INFO-FLOW: DBG:PUTS: automg_wrap -export -pcore_version 1.00.a -rtl vlog -tool Vivado -impltomg_flag
+INFO-FLOW: DBG:PROC: ::AESL_AUTOMG::auto_generate args='-export -pcore_version 1.00.a -rtl vlog -tool Vivado -impltomg_flag'
+INFO-FLOW: DBG:PUTS:     auto_generate -export -pcore_version 1.00.a -rtl vlog -tool Vivado -impltomg_flag
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS: read_platform_lib C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl
+Execute       source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/interface.gen 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/util.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/DSP48/dsp48.gen 
+INFO-FLOW: DBG:PUTS:       initCTypeInfo top_module=camta xml_exists=0
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.rtl_wrap.cfg.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.rtl_wrap.cfg.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.rtl_wrap.cfg.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+INFO-FLOW: DBG:PUTS:       cosim_export_main adding deadlock detection to camta
+INFO-FLOW: DBG:PUTS: Skipping loadAnalyze_DB, #g_database=15
+INFO-FLOW: DBG:PUTS:       generate_json generate_bd_files=0 generate_xo_files=false #modelList=4 #gSsdmPorts=0
+INFO-FLOW: DBG:PROC: ::AP::DESIGN_DATA::generate_json generate_bd_files='0' generate_xo_files='false' modelList='camta_mul_20s_16s_36_1_0
+camta_mul_24s_16s_40_1_0
+horner_core
+camta
+' rtl_lang='vlog' bootstrap_tcl='false' outdir='' outfilename=''
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/top-io-be.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.rtl_wrap.cfg.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.compgen.dataonly.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/horner_core.tbgen.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data names -quiet 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data info -quiet 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.constraint.tcl 
+Execute       sc_get_clocks camta 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+INFO-FLOW: DBG:PUTS:       cosim_export_main adding deadlock detection to camta
+INFO-FLOW: DBG:PUTS:       generate_ip_script #gSsdmPorts=0 g_lang=vlog is_sdaccel=false is_sdsoc=true xo_file=
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data names -quiet 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data info -quiet 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data names -quiet 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data info -quiet 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS:       generate_top_info
+INFO-FLOW: DBG:PUTS:       prepArgInfo -> loadAnalyze_DB top_module=camta
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.rtl_wrap.cfg.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.rtl_wrap.cfg.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.rtl_wrap.cfg.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data names -quiet 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data info -quiet 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data names -quiet 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data info -quiet 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.constraint.tcl 
+INFO-FLOW: DBG:PUTS:       generate_syn_sh
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data names -quiet 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data info -quiet 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS:       generate_imp_constraints
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data names -quiet 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data info -quiet 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.constraint.tcl 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/camta.tbgen.tcl 
+INFO-FLOW: DBG:PUTS:       delete-temp-dirs (skipped for debug)
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data names -quiet 
+Execute       ap_part_info -name xck26-sfvc784-2LV-c -data info -quiet 
+INFO-FLOW: DBG:PUTS: read_platform_lib C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl
+Execute       source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2023.2/common/technology/generic/autopilot/interface.gen 
+Execute       source C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/util.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2023.2/common/technology/xilinx/DSP48/dsp48.gen 
+INFO-FLOW: DBG:PUTS:     IP package: exec C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/impl/ip/pack.bat
+INFO-FLOW: DBG:PUTS:     IP package: success C:/Users/carlo/OneDrive/Documents/Maestria/DAFPGA/Proyecto/Avances/proj_final_FPGA_CAMTA/camta_hls/solution1/impl/ip/pack.bat
+Execute       send_msg_by_id INFO @200-802@%s camta_hls/solution1/impl/export.zip 
+INFO: [HLS 200-802] Generated output file camta_hls/solution1/impl/export.zip
+Command     export_design done; 12.996 sec.
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 12.997 seconds; current allocated memory: 6.078 MB.
+Execute     cleanup_all 

@@ -9,7 +9,7 @@
     <config>
         <config_interface m_axi_latency="64" m_axi_alignment_byte_size="64" m_axi_max_widen_bitwidth="512" default_interface="kernel" m_axi_addr64="1" m_axi_conservative_mode="1" m_axi_auto_max_ports="0"/>
         <config_rtl register_reset_num="3" deadlock_detection="sim"/>
-        <config_export format="xo" ipname="softmax_opt"/>
+        <config_export format="xo" ipname="horner_core"/>
     </config>
     <targetInfo>
         <TargetInfo value="xck26:-sfvc784:-2LV-c"/>

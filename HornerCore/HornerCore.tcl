@@ -23,18 +23,28 @@ if { [info exists ::env(CLOCK_PERIOD) ] } {
 # Crear proyecto
 # ==============================
 
-open_project horner_core_pipeline -reset
-set_top horner_core_pipelines
+set top_name "horner_core"
+
+# Por defecto no resetear para conservar soluciones historicas y compararlas.
+if { [info exists ::env(RESET_PROJECT)] && $::env(RESET_PROJECT) eq "1" } {
+  open_project horner_core -reset
+} else {
+  open_project horner_core
+}
+
+set_top $top_name
 
 # Archivos fuente
-add_files "./HornerCorePipeline.cpp"
-add_files -tb "./HornerCorePipeline_tb.cc"
+add_files "./HornerCore.cpp"
+add_files -tb "./HornerCore_tb.cc"
 
 # ==============================
 # Crear solución
 # ==============================
 
-open_solution solution -flow_target vitis
+set datetime_str [clock format [clock seconds] -format "%Y%m%d_%H%M%S"]
+set solution_name "solution_${top_name}_${datetime_str}"
+open_solution $solution_name -flow_target vitis
 set_part $part
 
 create_clock -period $clk_period -name default
@@ -46,7 +56,7 @@ config_interface -m_axi_conservative_mode=1
 config_interface -m_axi_auto_max_ports=0
 
 # Exportar como kernel XO
-config_export -format xo -ipname softmax_opt
+config_export -format xo -ipname horner_core
 
 # ==============================
 # Simulación y síntesis
@@ -55,6 +65,42 @@ config_export -format xo -ipname softmax_opt
 # (activar si quieres sim C)
 csim_design -clean   
 csynth_design
+
+# Ejecutar comparacion de soluciones despues de la sintesis
+set compare_script ""
+set script_candidates [list \
+  [file normalize [file join [pwd] ".." "scripts" "compare_hls_solutions.py"]] \
+  [file normalize [file join [pwd] "scripts" "compare_hls_solutions.py"]] \
+]
+
+foreach candidate $script_candidates {
+  if { [file exists $candidate] } {
+    set compare_script $candidate
+    break
+  }
+}
+
+if { $compare_script ne "" } {
+  puts "Running post-synthesis comparison script..."
+
+  set py_cmd "python"
+  if { [catch {exec $py_cmd --version} py_check] } {
+    set py_cmd "py"
+  }
+
+  if {
+    [catch {
+      exec $py_cmd $compare_script --project-dir [pwd] --report-glob "horner_core*/solution*/syn/report/*_csynth.rpt"
+    } compare_output]
+  } {
+    puts "Warning: comparison script failed."
+    puts $compare_output
+  } else {
+    puts $compare_output
+  }
+} else {
+  puts "Warning: comparison script not found in expected locations"
+}
 
 close_project
 
