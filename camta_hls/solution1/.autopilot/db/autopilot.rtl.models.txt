@@ -1,4 +1,0 @@
-camta_mul_20s_16s_36_1_0
-camta_mul_24s_16s_40_1_0
-horner_core
-camta

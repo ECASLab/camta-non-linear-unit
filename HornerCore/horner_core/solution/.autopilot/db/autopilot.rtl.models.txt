@@ -1,3 +1,0 @@
-horner_core_mul_32s_16s_42_2_1
-horner_core_control_s_axi
-horner_core

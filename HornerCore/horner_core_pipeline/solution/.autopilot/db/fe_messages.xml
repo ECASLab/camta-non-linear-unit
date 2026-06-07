@@ -1,9 +1,0 @@
-<xilinx:hls_fe_msgs>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="./HornerCorePipeline.cpp:12:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="horner_core_pipeline" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="./HornerCorePipeline.cpp:13:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="horner_core_pipeline" ARG_PragmaIsValid="1" ARG_PragmaOptions="off" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-</xilinx:hls_fe_msgs>
-
