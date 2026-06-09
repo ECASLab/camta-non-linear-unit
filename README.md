@@ -1,8 +1,15 @@
-# CAMTA: Configurable Multi-Region Activation Unit
+# CAMTA: Reconfigurable Multi-Region Activation Unit
 
-**CAMTA** is a configurable FPGA accelerator for approximating nonlinear activation functions using multi-region polynomial evaluation. The design is intended for FPGA-based machine learning inference workloads where activation functions such as **GeLU**, **tanh**, **sigmoid**, **Swish**, and exponential-like mappings must be evaluated efficiently without redesigning the hardware for every function.
+CAMTA is a 16-bit reconfigurable multi-region activation unit for nonlinear function approximation in machine learning workloads. The unit approximates functions such as GeLU, tanh, sigmoid, Swish, and the exponential stage used in Softmax by reusing the same scalar datapath with runtime-configurable thresholds, coefficients, polynomial degrees, and region modes.
 
-CAMTA partitions the input domain into three programmable regions and evaluates one polynomial per region using **Horner's rule**. The accelerator uses a 32-lane vectorized datapath over a 512-bit AXI interface, allowing multiple 16-bit fixed-point samples to be processed per memory word.
+The current repository contains:
+
+- a Vitis HLS implementation of the scalar CAMTA unit and Alveo kernel wrapper;
+- an XRT host application for FPGA runtime and accuracy validation;
+- manually isolated Verilog RTL for the scalar core used for ASIC-oriented synthesis;
+- simple C++ and Verilog testbenches for functional checks.
+
+CAMTA is intended to be a reusable activation-function macro rather than a function-specific evaluator. Its main design trade-off is exchanging some area and power overhead for runtime configurability and hardware reuse across multiple nonlinear functions without hardware resynthesis.
 
 ---
 
@@ -12,193 +19,139 @@ CAMTA partitions the input domain into three programmable regions and evaluates 
 - Jose Fonseca-Cruz
 - Pablo Ramirez-Morera
 - Erick Obregon-Fonseca
+- Luis G. Leon-Vega
+- Jorge Castro-Godinez
 
-Instituto Tecnologico de Costa Rica  
-FPGA Design Course Project
-
----
-
-## Project Overview
-
-The main goal of CAMTA is to provide a **runtime-configurable nonlinear approximation engine** for FPGA deployment. Instead of implementing a dedicated hardware block for a single activation function, CAMTA reuses the same architecture and changes its behavior through configuration parameters:
-
-- Segmentation threshold `L`.
-- Polynomial degree for each region.
-- Polynomial coefficients for each region.
-- Vector length `N`.
-
-This makes the architecture function-agnostic at the hardware level. Switching from one activation function to another only requires changing the configuration values, not modifying or resynthesizing the RTL.
+School of Electronics Engineering  
+Costa Rica Institute of Technology
 
 ---
 
-## Architecture
+## Architecture Overview
 
-CAMTA is organized as a three-region piecewise polynomial approximation unit:
-
-```text
-Input vector
-    |
-    v
-512-bit AXI input word
-    |
-    v
-Unpack 32 fixed-point samples
-    |
-    v
-Per-lane region selection
-    |
-    v
-Coefficient and degree selection
-    |
-    v
-Horner polynomial evaluation
-    |
-    v
-Pack 32 fixed-point outputs
-    |
-    v
-512-bit AXI output word
-```
-
-Each 512-bit memory word contains **32 samples** of 16 bits each. Internally, CAMTA instantiates 32 parallel evaluation lanes. Each lane independently:
-
-1. Unpacks one input sample.
-2. Selects the active region.
-3. Selects the corresponding polynomial coefficients and degree.
-4. Evaluates the polynomial using Horner's rule.
-5. Packs the output sample back into the output AXI word.
-
----
-
-## Region Selection
-
-The input domain is divided using a programmable threshold `L`:
-
-| Region | Condition | Purpose |
-|---|---|---|
-| Left region | `x < -L` | Negative tail or left-side behavior |
-| Center region | `-L <= x <= L` | Main nonlinear transition region |
-| Right region | `x > L` | Positive tail or right-side behavior |
-
-Each region has its own polynomial degree `d_r` and coefficient set:
+CAMTA partitions the input domain into three programmable regions using two independent thresholds:
 
 ```text
-{a3_r, a2_r, a1_r, a0_r}
+r0: x < L_left
+r1: L_left <= x <= L_right
+r2: x > L_right
 ```
 
-This allows CAMTA to approximate functions with different curvature profiles by changing only the configuration registers.
+For each region, CAMTA selects:
 
----
+- four polynomial coefficients: `a3`, `a2`, `a1`, `a0`;
+- a polynomial degree: `0`, `1`, `2`, or `3`;
+- an execution mode: `HORNER`, `CONST`, `ZERO`, or `IDENTITY`.
 
-## Polynomial Evaluation
-
-For a selected region `r`, CAMTA approximates the output using a cubic polynomial:
+In `HORNER` mode, the selected region is evaluated as a cubic polynomial:
 
 ```text
-P_r(x) = a0_r + a1_r*x + a2_r*x^2 + a3_r*x^3
+P(x) = a0 + a1*x + a2*x^2 + a3*x^3
 ```
 
-The polynomial is evaluated using Horner's rule:
+using Horner's rule:
 
 ```text
-P_r(x) = (((a3_r*x + a2_r)*x + a1_r)*x + a0_r)
+P(x) = (((a3*x + a2)*x + a1)*x + a0)
 ```
 
-Horner's rule was selected because it maps naturally to FPGA hardware as a regular multiply-accumulate chain. This improves compatibility with HLS synthesis, simplifies pipelining, and avoids explicitly computing `x^2` and `x^3` as separate operations.
+The region mode controls the final output behavior:
 
-The design supports effective polynomial degrees from 0 to 3. Depending on the selected degree, unused stages can be bypassed or ignored.
+| Mode | Output behavior |
+|---|---|
+| `HORNER` | Returns the Horner polynomial result. |
+| `CONST` | Returns the selected `a0` coefficient. |
+| `ZERO` | Returns zero. |
+| `IDENTITY` | Returns the input `x`. |
+
+This mode-controlled bypass avoids unnecessary polynomial evaluation in regions where the function can be represented as constant, zero, or identity-like behavior. For example, tanh and sigmoid can use constant tails, while GeLU and Swish can use residual/identity-like tails.
 
 ---
 
 ## Numeric Format
 
-The current implementation uses fixed-point arithmetic:
+The HLS implementation uses fixed-point arithmetic:
 
 ```cpp
 typedef ap_fixed<16,6>  data_t;
 typedef ap_fixed<24,10> acc_t;
-typedef ap_uint<512>   word_t;
 ```
 
 | Type | Description |
 |---|---|
-| `data_t` | 16-bit Q6.10 fixed-point type used for input samples, output samples, and coefficients. |
-| `acc_t` | Wider internal accumulator used inside the Horner evaluation chain. |
-| `word_t` | 512-bit AXI memory word. |
+| `data_t` | 16-bit Q6.10 fixed-point type used for inputs, outputs, thresholds, and coefficients. |
+| `acc_t` | 24-bit internal accumulator used inside the Horner evaluation chain. |
 
-The external interface uses a compact 16-bit Q6.10 representation, while the internal Horner chain uses wider arithmetic to reduce intermediate quantization effects before casting the final result back to the interface format.
+The external datapath uses a compact 16-bit Q6.10 representation, while the Horner chain uses a wider accumulator to reduce intermediate quantization effects before casting the result back to `data_t`.
 
 ---
 
 ## Repository Structure
 
 ```text
-proj_final_FPGA_CAMTA-main/
+camta-non-linear-unit/
 ├── README.md
+├── LICENSE
 ├── run_hls.tcl
-├── src/
+├── HW/
+│   ├── Makefile
 │   ├── camta.cpp
 │   ├── camta.h
 │   ├── camta_types.h
 │   ├── horner_core.cpp
 │   └── horner_core.h
+├── SW/
+│   ├── Makefile
+│   └── camta.cpp
+├── src/
+│   ├── camta.cpp
+│   ├── camta.h
+│   ├── camta_types.h
+│   ├── horner_core.cpp
+│   ├── horner_core.h
+│   ├── camta_unit_core.v
+│   ├── camta_horner_seq.v
+│   ├── camta_region_select.v
+│   └── camta_mode_bypass.v
 ├── tb/
-│   └── camta_tb.cpp
-├── scripts/
-│   └── compare_hls_solutions.py
-├── HornerCore/
-│   ├── HornerCore.cpp
-│   ├── HornerCorePipeline.cpp
-│   ├── HornerCore.tcl
-│   ├── HornerCore_tb.cc
-│   └── HornerCorePipeline_tb.cc
-└── camta_hls/
-    └── solution*/
-        ├── syn/report/
-        └── impl/
+│   ├── camta_tb.cpp
+│   └── tb_camta_unit_core.v
+└── scripts/
+    └── compare_hls_solutions.py
 ```
 
-### Main Files
+### Main components
 
 | Path | Description |
 |---|---|
-| `src/camta.cpp` | Top-level CAMTA accelerator. Handles AXI access, lane unpacking, region selection, Horner evaluation, and output packing. |
-| `src/camta_types.h` | Fixed-point and AXI word type definitions, plus lane pack/unpack helper functions. |
-| `src/horner_core.cpp` | Horner polynomial evaluation core. |
-| `tb/camta_tb.cpp` | C++ testbench for functional validation. |
-| `run_hls.tcl` | Vitis HLS automation script. |
-| `scripts/compare_hls_solutions.py` | Utility script for extracting and comparing HLS synthesis metrics. |
-| `HornerCore/` | Standalone Horner core exploration, including baseline and pipelined versions. |
+| `src/camta.cpp` | HLS source for `camta_unit` and scalar array wrapper `camta`. Used by `run_hls.tcl`. |
+| `src/horner_core.cpp` | Degree-controlled Horner polynomial evaluator. |
+| `src/camta_types.h` | Fixed-point types and mode definitions. |
+| `src/*.v` | Isolated Verilog RTL modules for scalar core-level simulation and ASIC-oriented synthesis. |
+| `HW/` | Alveo/Vitis kernel source and Makefile for generating the FPGA binary. |
+| `SW/camta.cpp` | XRT host application used for runtime and numerical validation. |
+| `tb/camta_tb.cpp` | Simple C++ functional testbench for the scalar HLS wrapper. |
+| `tb/tb_camta_unit_core.v` | Verilog testbench for the isolated scalar RTL core. |
+| `run_hls.tcl` | Vitis HLS script for synthesizing the scalar `camta_unit`. |
+| `scripts/compare_hls_solutions.py` | Utility script for extracting and comparing HLS synthesis reports. |
 
 ---
 
-## HLS Implementation Details
+## Build Requirements
 
-The top-level CAMTA function uses AXI memory interfaces for input and output buffers, plus AXI-Lite control registers for configuration parameters:
+The project assumes a Xilinx/AMD FPGA development environment with:
 
-```cpp
-#pragma HLS INTERFACE m_axi     offset=slave port=x_in  bundle=gmem0 depth=1024
-#pragma HLS INTERFACE m_axi     offset=slave port=y_out bundle=gmem1 depth=1024
-#pragma HLS INTERFACE s_axilite port=return
-```
+- Vitis HLS / Vitis;
+- XRT runtime and development headers;
+- a compatible Alveo platform, configured by default for `xilinx_u55c_gen3x16_xdma_3_202210_1` in `HW/Makefile`;
+- a C++17 compiler;
+- Python 3 for the report comparison utility.
 
-The main word-processing loop is pipelined with an initiation interval target of one cycle:
-
-```cpp
-#pragma HLS PIPELINE II=1
-```
-
-The lane loop is unrolled to exploit the 32-lane vectorized datapath:
-
-```cpp
-#pragma HLS UNROLL
-```
-
-This organization prioritizes throughput by processing one 512-bit word per pipeline iteration once the pipeline is filled.
+Before building on a server, load the corresponding Vitis and XRT environment scripts according to the local installation.
 
 ---
 
-## Running Vitis HLS
+## Running Vitis HLS for the Scalar Unit
 
 From the repository root:
 
@@ -206,16 +159,13 @@ From the repository root:
 vitis_hls -f run_hls.tcl
 ```
 
-Default target configuration:
+The script synthesizes the scalar top function:
 
 ```tcl
-set part "xck26-sfvc784-2LV-c"
-set clk_period 4
+set top_name "camta_unit"
 ```
 
-This corresponds to the AMD Kria KV260 target device with a 4 ns clock period, equivalent to 250 MHz.
-
-The target part and clock can also be configured through environment variables:
+By default, it targets a 4 ns clock period. The target FPGA part and clock period can be overridden through environment variables:
 
 ```bash
 export PART=xck26-sfvc784-2LV-c
@@ -223,164 +173,216 @@ export CLOCK_PERIOD=4
 vitis_hls -f run_hls.tcl
 ```
 
-PowerShell example:
+The HLS script runs `csynth_design` and then attempts to execute `scripts/compare_hls_solutions.py` to summarize synthesis reports across available solutions.
 
-```powershell
-$env:PART="xck26-sfvc784-2LV-c"
-$env:CLOCK_PERIOD="4"
-vitis_hls -f run_hls.tcl
+---
+
+## Building the Alveo Kernel
+
+From the `HW/` directory:
+
+```bash
+cd HW
+make build
+```
+
+Important Makefile settings:
+
+```make
+TARGET := hw
+PLATFORM ?= xilinx_u55c_gen3x16_xdma_3_202210_1
+KERNEL_NAME := camta
+KERNEL_FREQ := 250
+HLS_FILES := camta.cpp horner_core.cpp
+```
+
+The expected output binary is:
+
+```text
+HW/package.hw/kernels.xclbin
+```
+
+To clean generated files:
+
+```bash
+make cleanall
 ```
 
 ---
 
-## Experimental Setup
+## Building and Running the XRT Host
 
-The architecture was evaluated with Vitis HLS 2023.2 and XRT-based host execution at 250 MHz. The evaluation considered the following nonlinear functions:
+Build the host application from `SW/`:
 
-- GeLU
-- tanh
-- sigmoid
-- Swish
-- exponential
+```bash
+cd SW
+make
+```
 
-For each function, CAMTA was configured with a different set of:
+Run all timing and functional tests:
 
-- Three-region coefficients.
-- Region degrees.
-- Segmentation threshold `L`.
+```bash
+./camta ../HW/package.hw/kernels.xclbin --mode all
+```
 
-Runtime measurements were obtained using one warm-up run and five measured runs. Numerical accuracy was evaluated against a floating-point software reference using:
+Supported modes:
 
-- MSE
-- RMSE
-- MAE
-- Maximum absolute error
+```bash
+./camta ../HW/package.hw/kernels.xclbin --mode all
+./camta ../HW/package.hw/kernels.xclbin --mode timing
+./camta ../HW/package.hw/kernels.xclbin --mode functional
+```
+
+Equivalent short options are also supported:
+
+```bash
+./camta ../HW/package.hw/kernels.xclbin -all
+./camta ../HW/package.hw/kernels.xclbin -timing
+./camta ../HW/package.hw/kernels.xclbin -functional
+```
+
+The host executes one warm-up run and five measured runs. It reports detailed per-test timing, throughput, MSE, RMSE, MAE, maximum absolute error, and final summary tables.
 
 ---
 
-## Synthesis Results
+## Runtime Validation Cases
 
-The final vectorized CAMTA implementation meets the 250 MHz target with timing margin.
+The host validates the following nonlinear functions using `N = 10000` samples:
+
+| Function | Evaluation range | Best configuration used in paper |
+|---|---:|---|
+| GeLU | `[-8, 8]` | residual symmetry, Horner/Horner/Identity |
+| tanh | `[-4, 4]` | odd symmetry, Horner/Horner/Const |
+| sigmoid | `[-8, 8]` | complement symmetry, Horner/Horner/Const |
+| Swish | `[-8, 8]` | residual symmetry, Horner/Horner/Identity |
+| Softmax-assisted exp | `[-8, 0]` | Const/Horner/Horner |
+
+The Softmax experiment is reported as CAMTA-assisted Softmax. CAMTA approximates only the exponential stage over shifted inputs in `[-8, 0]`; summation and normalization are performed by the host.
+
+---
+
+## Selected Configurations
+
+The following configurations correspond to the best reported `N = 10000` validation cases:
+
+| Function | Range | `L_left` | `L_right` | Symmetry mode | Region modes | Degrees |
+|---|---:|---:|---:|---|---|---|
+| GeLU | `[-8, 8]` | `1.50` | `3.00` | residual | H/H/I | 3/3/1 |
+| tanh | `[-4, 4]` | `1.25` | `3.50` | odd | H/H/C | 3/3/0 |
+| sigmoid | `[-8, 8]` | `2.50` | `4.50` | complement | H/H/C | 3/3/0 |
+| Swish | `[-8, 8]` | `2.00` | `6.50` | residual | H/H/I | 3/3/1 |
+| Softmax-assisted exp | `[-8, 0]` | `-4.00` | `-1.00` | none | C/H/H | 0/3/3 |
+
+Legend:
+
+- H: `HORNER`
+- C: `CONST`
+- I: `IDENTITY`
+
+---
+
+## Representative FPGA Runtime and Accuracy Results
+
+The following results correspond to the final `N = 10000` validation run on the Alveo flow:
+
+| Function | Kernel time [us] | Throughput [MSamples/s] | RMSE | MaxAbsErr |
+|---|---:|---:|---:|---:|
+| GeLU | 183.59 | 54.47 | 0.00152 | 0.00501 |
+| tanh | 185.74 | 53.84 | 0.00162 | 0.00582 |
+| sigmoid | 185.89 | 53.79 | 0.00207 | 0.00803 |
+| Swish | 185.42 | 53.93 | 0.00389 | 0.01344 |
+| Softmax-assisted | 185.24 | 53.98 | 3.60e-6 | 1.08e-5 |
+
+These timings correspond to the scalar FPGA wrapper execution and include kernel launch and memory-mapped execution overhead. They should not be interpreted as the intrinsic datapath latency of the CAMTA scalar unit.
+
+---
+
+## FPGA HLS Synthesis Summary
+
+The scalar HLS synthesis result used in the paper reports:
+
+| Metric | CAMTA scalar unit |
+|---|---:|
+| Target clock | 4.00 ns |
+| Estimated clock | 2.465 ns |
+| Datapath latency | 11 cycles |
+| BRAM | 0 |
+| DSP | 3 |
+| FF | 802 |
+| LUT | 1756 |
+
+A CORDIC exponential core used as a comparison point reports 2 DSPs, 757 FFs, and 2676 LUTs. That comparison should be interpreted carefully because the CORDIC result corresponds only to an exponential evaluator, while CAMTA supports multiple nonlinear functions through runtime-configurable thresholds, coefficients, degrees, and region modes.
+
+---
+
+## ASIC-Oriented Synthesis Summary
+
+The manually isolated scalar RTL core was synthesized using a TSMC 65 nm standard-cell flow at 250 MHz. The HLS-generated interface and wrapper logic were excluded so that the ASIC evaluation reflects only the arithmetic and control core.
 
 | Metric | Value |
 |---|---:|
-| Target clock period | 4.00 ns |
-| Estimated clock period | 2.92 ns |
-| Target frequency | 250 MHz |
-| Top-level latency | 157 to 1180 cycles |
-| Top-level latency time | 0.628 us to 4.720 us |
-| `word_loop` initiation interval | 1 cycle |
-| `word_loop` iteration latency | 14 cycles |
-| BRAM18K | 116 |
-| DSP | 96 |
-| FF | 27,656 |
-| LUT | 33,507 |
+| Clock period | 4.0 ns |
+| Frequency | 250 MHz |
+| Critical path | 2.62 ns |
+| Total cell area | 6632.40 um^2 |
+| Combinational area | 4555.60 um^2 |
+| Noncombinational area | 2076.80 um^2 |
+| Total cells | 1582 |
+| Combinational cells | 1343 |
+| Sequential cells | 236 |
+| Horner core area | 4753.60 um^2 |
+| Region-selection area | 164.00 um^2 |
+| Mode-bypass area | 83.20 um^2 |
+| Dynamic power | 1.1743 mW |
+| Leakage power | 189.16 uW |
+| Total power | 1.3634 mW |
 
-Approximate resource utilization on the target FPGA:
-
-| Resource | Utilization |
-|---|---:|
-| BRAM | 40% |
-| DSP | 7% |
-| FF | 11% |
-| LUT | 28% |
-
-These results reflect the main architectural trade-off of CAMTA: the design uses more replicated hardware than a scalar implementation, but this enables wide-word, lane-parallel execution and high throughput.
+The Horner core dominates the implementation area, while the region-selection and mode-bypass logic represent a small fraction of the total area. This supports the interpretation that most of the hardware cost is associated with the shared arithmetic datapath, and that the additional region configurability introduces limited area overhead relative to the polynomial evaluator.
 
 ---
 
-## Runtime and Accuracy Results
+## Verilog RTL Core
 
-Representative runtime and numerical results are summarized below.
+The `src/*.v` files provide a scalar RTL version of the CAMTA core:
 
-| Function | N | Kernel time [us] | Throughput [MSamples/s] | RMSE | MAE |
-|---|---:|---:|---:|---:|---:|
-| GeLU | 10000 | 88.22 | 113.3787 | 0.0225 | 0.0128 |
-| tanh | 4096 | 90.17 | 45.4339 | 0.0639 | 0.0360 |
-| sigmoid | 4096 | 87.67 | 44.6428 | 0.0393 | 0.0241 |
-| Swish | 4096 | 84.12 | 48.6855 | 0.0905 | 0.0607 |
-| exp, `L = 1.25` | 1024 | 86.54 | 11.8329 | 16.73 | 4.42 |
-| exp, `L = 1.25` | 4096 | 89.95 | 45.5373 | 16.64 | 4.37 |
-| exp, `L = 0.35`, range `[-1, 1]` | 1024 | 85.01 | 12.0467 | 0.001 | 0.002 |
-| exp, `L = 0.35`, range `[-1, 1]` | 4096 | 86.72 | 47.2367 | 0.001 | 0.002 |
+| File | Description |
+|---|---|
+| `camta_unit_core.v` | Top-level scalar RTL core with start/done handshake. |
+| `camta_horner_seq.v` | Sequential Horner evaluator using a Q10.14 accumulator. |
+| `camta_region_select.v` | Region decoder for `L_left` and `L_right`. |
+| `camta_mode_bypass.v` | Output mux for `HORNER`, `CONST`, `ZERO`, and `IDENTITY` modes. |
 
-The results show that CAMTA is especially effective for bounded smooth activation functions. The exponential function is more challenging over a wide interval such as `[-4, 4]` because its large dynamic range is difficult to approximate using a fixed three-region cubic model under Q6.10 constraints. However, when the exponential range is restricted to `[-1, 1]`, the approximation error is significantly reduced.
+A simple Verilog testbench is provided in:
 
----
-
-## Comparison with Related Approaches
-
-CAMTA should be interpreted as a configurable approximation engine rather than a function-specific exact evaluator.
-
-Compared with specialized CORDIC-based accelerators, CAMTA requires more area but offers runtime flexibility across multiple activation functions. Compared with PLAC-style piecewise linear approximation, CAMTA can achieve competitive accuracy for several bounded functions while keeping a unified hardware datapath.
-
-| Function | Metric | CAMTA | PLAC | CORDIC |
-|---|---|---:|---:|---:|
-| `log2(1 + x)` | MAE | `1.11e-3` | `2.15e-4` | - |
-| `tanh(x)` | MAE | `1.66e-3` | `5.55e-3` | - |
-| `sigmoid(x)` | MAE | `1.90e-3` | `5.65e-3` | - |
-| Softmax | RMSE | `2.68e-4` | - | `~3e-5` to `4e-5` |
-
-This comparison highlights CAMTA's design point: it trades minimum area and exact evaluation for architectural reusability and runtime configurability.
-
----
-
-## Main Design Trade-offs
-
-### Strengths
-
-- Runtime reconfiguration through coefficients, region degrees, and threshold `L`.
-- Same hardware core can approximate multiple nonlinear functions.
-- 32-lane vectorized datapath aligned with a 512-bit AXI interface.
-- Fully pipelined word-level processing with initiation interval of 1 cycle.
-- Good throughput for large batches, exceeding 113 MSamples/s for GeLU at `N = 10000`.
-- Competitive accuracy for bounded activation functions.
-
-### Limitations
-
-- Higher resource utilization than scalar or function-specific implementations.
-- Approximation quality depends strongly on the selected coefficients and input range.
-- Rapidly growing functions such as exponential are difficult to approximate over wide domains with only three cubic regions.
-- Fixed kernel launch and memory-transfer overheads dominate for small batch sizes.
-
----
-
-## Development Notes
-
-The final architecture described in the report is the packed 512-bit AXI version with 32 lanes. Older scalar testbench or header variants may appear in the repository as intermediate development artifacts. When validating or extending the final version, the testbench and function declaration should use the packed `word_t` interface and the helper functions in `camta_types.h`:
-
-```cpp
-camta_pack_lane(word, lane, value);
-camta_unpack_lane(word, lane);
+```text
+tb/tb_camta_unit_core.v
 ```
+
+---
+
+## Limitations and Notes
+
+- CAMTA is a configurable approximation unit, not a function-specific exact evaluator.
+- Approximation quality depends on the selected coefficients, thresholds, degrees, modes, and input range.
+- The Softmax result is CAMTA-assisted; CAMTA approximates the exponential stage, while the host performs reduction and normalization.
+- The `run_hls.tcl` script synthesizes the scalar `camta_unit`, not the Alveo memory wrapper.
+- The `HW/` Makefile builds the Alveo kernel wrapper named `camta`.
+- The ASIC-oriented synthesis results correspond to the isolated scalar RTL core, excluding HLS-generated AXI/interface logic.
 
 ---
 
 ## Future Work
 
-Potential extensions include:
+Planned extensions include:
 
-1. **Asymmetric segmentation:** replace the single symmetric threshold `L` with independent thresholds `L-` and `L+` to better approximate asymmetric functions such as GeLU and ELU.
-2. **Early-exit saturation:** bypass the Horner chain in regions where functions such as `tanh` or `sigmoid` are already saturated.
-3. **Mixed precision per region:** use different fixed-point formats depending on the curvature and dynamic range of each region.
-4. **Formal coefficient optimization:** integrate minimax or least-squares fitting constrained to the Q6.10 quantization grid.
-5. **Full system integration:** integrate the exported HLS kernel into a complete Vivado/Vitis acceleration flow for the target FPGA platform.
-
----
-
-## AI Tools Usage
-
-AI tools were used as auxiliary support during the development of the project. Their use was limited to:
-
-- Testbench generation and debugging support.
-- Suggestions for block diagram organization.
-- Troubleshooting implementation issues.
-- Improving clarity, organization, and technical writing.
-
-The architectural decisions, implementation, experiments, interpretation of results, and academic responsibility remain with the authors.
+- integrating CAMTA into a RISC-V-based accelerator architecture;
+- adding input gating to reduce unnecessary Horner-core switching when `CONST`, `ZERO`, or `IDENTITY` modes are selected;
+- improving backend timing robustness and hold-time closure for ASIC implementation;
+- refining coefficient-generation and quantization-aware fitting flows for new nonlinear functions;
+- evaluating multi-lane replication strategies for throughput-oriented accelerator designs.
 
 ---
 
 ## License
 
-This repository is intended for academic use as part of an FPGA design course project.
+This repository is distributed under the license included in `LICENSE`.
