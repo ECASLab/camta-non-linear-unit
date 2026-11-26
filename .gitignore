@@ -11,3 +11,7 @@ __pycache__/
 
 camta_hls/
 HornerCore/
+
+# Simulation outputs
+/build/
+/obj_dir_ref09/
