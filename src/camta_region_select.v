@@ -1,8 +1,12 @@
-module camta_region_select (
-    input  wire signed [15:0] x,        // Q6.10
-    input  wire signed [15:0] L_left,   // Q6.10
-    input  wire signed [15:0] L_right,  // Q6.10
-    output reg  [1:0]         region
+`timescale 1ns / 1ps
+
+module camta_region_select #(
+    parameter integer DATA_W = 16
+)(
+    input  wire signed [DATA_W-1:0] x,
+    input  wire signed [DATA_W-1:0] L_left,
+    input  wire signed [DATA_W-1:0] L_right,
+    output reg  [1:0]               region
 );
 
     always @(*) begin
