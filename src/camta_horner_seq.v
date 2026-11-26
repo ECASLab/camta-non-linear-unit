@@ -1,111 +1,233 @@
-module camta_horner_seq (
-    input  wire               clk,
-    input  wire               rst_n,
-    input  wire               start,
+`timescale 1ns / 1ps
 
-    input  wire signed [15:0] x_in,       // Q6.10
-    input  wire signed [3:0]  degree_in,  // signed, clamped to [0..3], <0 => 0 output
-    input  wire signed [15:0] a3_in,      // Q6.10
-    input  wire signed [15:0] a2_in,
-    input  wire signed [15:0] a1_in,
-    input  wire signed [15:0] a0_in,
+// Three-stage, three-MAC pipelined Horner evaluator.
+//
+// REF09 usage:
+// This block is fed from the registered PRE stage in camta_unit_core.
+// Consequently, the old input-isolation muxes are removed from the
+// arithmetic cone. start remains the input-valid signal and controls
+// whether pipeline registers accept a new Horner sample.
+//
+// External data and coefficients use signed fixed-point DATA_W/DATA_I.
+// Internal pipeline values use signed fixed-point ACC_W/ACC_I.
+//
+// A new Horner sample may be accepted on every clock for which start=1.
+// Therefore, after the pipeline fills, the block supports II=1.
+//
+// Supported polynomial degrees are 1..3:
+//   degree 1 -> y = a1*x + a0
+//   degree 2 -> y = (a2*x + a1)*x + a0
+//   degree 3 -> y = ((a3*x + a2)*x + a1)*x + a0
+//
+// Degree decoding is only needed to form the Stage-1 Horner term:
+//   degree 1 -> 00 : term2 = 0
+//   degree 2 -> 01 : term2 = a2
+//   degree 3 -> 11 : term2 = a3*x + a2
+//
+// Stages 2 and 3 always evaluate valid samples. For degree 1, term2=0,
+// so Stage 2 naturally produces a1 without a bypass multiplexer.
+//
+// Degree 0 is not part of the CAMTA specification. The 2'b00 input encoding
+// is treated defensively as degree 1, without adding a degree-0 bypass path.
+module camta_horner_seq #(
+    parameter integer DATA_W = 16,
+    parameter integer DATA_I = 5,
+    parameter integer ACC_W  = 24,
+    parameter integer ACC_I  = 9
+)(
+    input  wire                      clk,
+    input  wire                      rst_n,
+    input  wire                      start,
 
-    output reg                busy,
-    output reg                done,
-    output reg  signed [15:0] y_out       // Q6.10
+    input  wire signed [DATA_W-1:0]  x_in,
+    input  wire        [1:0]         degree_in,
+    input  wire signed [DATA_W-1:0]  a3_in,
+    input  wire signed [DATA_W-1:0]  a2_in,
+    input  wire signed [DATA_W-1:0]  a1_in,
+    input  wire signed [DATA_W-1:0]  a0_in,
+
+    output wire                      busy,
+    output wire                      done,
+    output reg  signed [DATA_W-1:0]  y_out
 );
 
-    localparam integer X_FRAC   = 10;
-    localparam integer ACC_FRAC = 14;
+    localparam integer DATA_F            = DATA_W - DATA_I;
+    localparam integer ACC_F             = ACC_W - ACC_I;
+    localparam integer SHIFT_ALIGN       = ACC_F - DATA_F;
+    localparam integer MAC3_DIRECT_SHIFT = DATA_F - SHIFT_ALIGN;
 
-    reg signed [15:0] x_reg;
-    reg signed [3:0]  degree_reg;
-    reg signed [15:0] a3_reg, a2_reg, a1_reg, a0_reg;
+    // stage_en[1] selects degree-3 MAC3 result.
+    // stage_en[0] distinguishes degree 2 from degree 1 when forming term2.
+    function automatic [1:0] decode_degree;
+        input [1:0] degree_value;
+        begin
+            case (degree_value)
+                2'd2:    decode_degree = 2'b01;
+                2'd3:    decode_degree = 2'b11;
+                default: decode_degree = 2'b00;
+            endcase
+        end
+    endfunction
 
-    reg signed [23:0] acc_reg;            // Q10.14
-    reg [2:0]         step;
+    function automatic signed [ACC_W-1:0] align_coefficient;
+        input signed [DATA_W-1:0] coefficient;
+        reg signed [ACC_W-1:0] coefficient_extended;
+        begin
+            coefficient_extended =
+                {{(ACC_W-DATA_W){coefficient[DATA_W-1]}}, coefficient};
+            align_coefficient = coefficient_extended <<< SHIFT_ALIGN;
+        end
+    endfunction
 
-    reg signed [3:0]  degree_eff;
-    reg signed [15:0] coeff_q610;
-    reg signed [23:0] coeff_q1014;
-    reg signed [23:0] acc_next;
+    // ------------------------------------------------------------------
+    // REF09 registered-input assumption.
+    //
+    // Inputs come directly from camta_unit_core PRE registers. No
+    // start-controlled input mux is placed before MAC3. This avoids adding
+    // isolation logic to the new dedicated MAC3 timing stage.
+    //
+    // start still determines whether Stage 1 captures a new sample.
+    // ------------------------------------------------------------------
+    wire [1:0] stage_en_in;
 
-    wire signed [39:0] mult_full_q1624;
-    wire signed [23:0] mult_scaled_q1014;
+    assign stage_en_in = decode_degree(degree_in);
 
-    assign mult_full_q1624   = $signed(acc_reg) * $signed(x_reg); // Q10.14 * Q6.10 = Q16.24
-    assign mult_scaled_q1014 = mult_full_q1624 >>> X_FRAC;        // back to Q10.14
+    wire signed [ACC_W-1:0] a2_aligned_in;
+    wire signed [ACC_W-1:0] a1_aligned_in;
+    wire signed [ACC_W-1:0] a0_aligned_in;
 
-    always @(*) begin
-        if (degree_reg < 0)
-            degree_eff = -1;
-        else if (degree_reg > 3)
-            degree_eff = 3;
-        else
-            degree_eff = degree_reg;
-    end
+    assign a2_aligned_in = align_coefficient(a2_in);
+    assign a1_aligned_in = align_coefficient(a1_in);
+    assign a0_aligned_in = align_coefficient(a0_in);
 
-    always @(*) begin
-        case (step)
-            3'd0: coeff_q610 = a3_reg;
-            3'd1: coeff_q610 = a2_reg;
-            3'd2: coeff_q610 = a1_reg;
-            3'd3: coeff_q610 = a0_reg;
-            default: coeff_q610 = 16'sd0;
-        endcase
-    end
+    // ------------------------------------------------------------------
+    // Stage 1: MAC3 = a3*x + a2.
+    //
+    // a3 remains DATA_W wide, so the multiplier is DATA_W x DATA_W
+    // (16x16 for the CAMTA defaults).
+    // ------------------------------------------------------------------
+    wire signed [DATA_W-1:0]          mac3_op_a;
+    wire signed [DATA_W-1:0]          mac3_op_b;
+    wire signed [ACC_W-1:0]           mac3_addend;
+    wire signed [(2*DATA_W)-1:0]      mac3_product_full;
+    wire signed [ACC_W-1:0]           mac3_product_scaled;
+    wire signed [ACC_W-1:0]           mac3_sum;
+    wire signed [ACC_W-1:0]           term2_in;
 
-    always @(*) begin
-        coeff_q1014 = {{8{coeff_q610[15]}}, coeff_q610} <<< (ACC_FRAC - X_FRAC);
+    assign mac3_op_a   = a3_in;
+    assign mac3_op_b   = x_in;
+    assign mac3_addend = a2_aligned_in;
 
-        acc_next = acc_reg;
-        case (step)
-            3'd0: if (3 <= degree_eff) acc_next = mult_scaled_q1014 + coeff_q1014;
-            3'd1: if (2 <= degree_eff) acc_next = mult_scaled_q1014 + coeff_q1014;
-            3'd2: if (1 <= degree_eff) acc_next = mult_scaled_q1014 + coeff_q1014;
-            3'd3: if (0 <= degree_eff) acc_next = mult_scaled_q1014 + coeff_q1014;
-            default: acc_next = acc_reg;
-        endcase
-    end
+    assign mac3_product_full =
+        $signed(mac3_op_a) * $signed(mac3_op_b);
+
+    assign mac3_product_scaled =
+        $signed(mac3_product_full) >>> MAC3_DIRECT_SHIFT;
+
+    assign mac3_sum =
+        mac3_product_scaled + mac3_addend;
+
+    assign term2_in = stage_en_in[1] ? mac3_sum :
+                      stage_en_in[0] ? a2_aligned_in :
+                                       {ACC_W{1'b0}};
+
+    reg                         valid_s1;
+    reg signed [DATA_W-1:0]     x_s1;
+    reg signed [ACC_W-1:0]      term2_s1;
+    reg signed [ACC_W-1:0]      a1_s1;
+    reg signed [ACC_W-1:0]      a0_s1;
+
+    // ------------------------------------------------------------------
+    // Stage 2: MAC2 = term2*x + a1.
+    // ------------------------------------------------------------------
+    wire signed [ACC_W-1:0]        mac2_op_a;
+    wire signed [DATA_W-1:0]       mac2_op_b;
+    wire signed [ACC_W-1:0]        mac2_addend;
+    wire signed [ACC_W+DATA_W-1:0] mac2_product_full;
+    wire signed [ACC_W-1:0]        mac2_product_scaled;
+    wire signed [ACC_W-1:0]        mac2_sum;
+    wire signed [ACC_W-1:0]        term1_s1_next;
+
+    assign mac2_op_a   = term2_s1;
+    assign mac2_op_b   = x_s1;
+    assign mac2_addend = a1_s1;
+
+    assign mac2_product_full =
+        $signed(mac2_op_a) * $signed(mac2_op_b);
+
+    assign mac2_product_scaled =
+        $signed(mac2_product_full) >>> DATA_F;
+
+    assign mac2_sum =
+        mac2_product_scaled + mac2_addend;
+
+    assign term1_s1_next = mac2_sum;
+
+    reg                         valid_s2;
+    reg signed [DATA_W-1:0]     x_s2;
+    reg signed [ACC_W-1:0]      term1_s2;
+    reg signed [ACC_W-1:0]      a0_s2;
+
+    // ------------------------------------------------------------------
+    // Stage 3: MAC1 = term1*x + a0.
+    // ------------------------------------------------------------------
+    wire signed [ACC_W+DATA_W-1:0] mac1_product_full;
+    wire signed [ACC_W-1:0]        mac1_product_scaled;
+    wire signed [ACC_W-1:0]        mac1_sum;
+    wire signed [DATA_W-1:0]       y_data_s2_next;
+
+    assign mac1_product_full =
+        $signed(term1_s2) * $signed(x_s2);
+
+    assign mac1_product_scaled =
+        $signed(mac1_product_full) >>> DATA_F;
+
+    assign mac1_sum =
+        mac1_product_scaled + a0_s2;
+
+    assign y_data_s2_next =
+        $signed(mac1_sum) >>> SHIFT_ALIGN;
+
+    reg valid_s3;
+
+    assign done = valid_s3;
+    assign busy = valid_s1 | valid_s2 | valid_s3;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            x_reg      <= 16'sd0;
-            degree_reg <= 4'sd0;
-            a3_reg     <= 16'sd0;
-            a2_reg     <= 16'sd0;
-            a1_reg     <= 16'sd0;
-            a0_reg     <= 16'sd0;
-            acc_reg    <= 24'sd0;
-            step       <= 3'd0;
-            busy       <= 1'b0;
-            done       <= 1'b0;
-            y_out      <= 16'sd0;
+            valid_s1 <= 1'b0;
+            x_s1     <= {DATA_W{1'b0}};
+            term2_s1 <= {ACC_W{1'b0}};
+            a1_s1    <= {ACC_W{1'b0}};
+            a0_s1    <= {ACC_W{1'b0}};
+
+            valid_s2 <= 1'b0;
+            x_s2     <= {DATA_W{1'b0}};
+            term1_s2 <= {ACC_W{1'b0}};
+            a0_s2    <= {ACC_W{1'b0}};
+
+            valid_s3 <= 1'b0;
+            y_out    <= {DATA_W{1'b0}};
         end else begin
-            done <= 1'b0;
+            valid_s1 <= start;
+            valid_s2 <= valid_s1;
+            valid_s3 <= valid_s2;
 
-            if (start && !busy) begin
-                x_reg      <= x_in;
-                degree_reg <= degree_in;
-                a3_reg     <= a3_in;
-                a2_reg     <= a2_in;
-                a1_reg     <= a1_in;
-                a0_reg     <= a0_in;
-
-                acc_reg    <= 24'sd0;
-                step       <= 3'd0;
-                busy       <= 1'b1;
+            if (start) begin
+                x_s1     <= x_in;
+                term2_s1 <= term2_in;
+                a1_s1    <= a1_aligned_in;
+                a0_s1    <= a0_aligned_in;
             end
-            else if (busy) begin
-                acc_reg <= acc_next;
 
-                if (step == 3'd3) begin
-                    busy  <= 1'b0;
-                    done  <= 1'b1;
-                    y_out <= acc_next >>> (ACC_FRAC - X_FRAC); // Q10.14 -> Q6.10
-                end
+            if (valid_s1) begin
+                x_s2     <= x_s1;
+                term1_s2 <= term1_s1_next;
+                a0_s2    <= a0_s1;
+            end
 
-                step <= step + 3'd1;
+            if (valid_s2) begin
+                y_out <= y_data_s2_next;
             end
         end
     end
